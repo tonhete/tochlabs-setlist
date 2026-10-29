@@ -1,6 +1,6 @@
 ## 1. Foundations and quality gates
 
-- [ ] 1.1 Add `CLAUDE.md` at the repo root (architecture, module rules, conventions, TDD rule for `core:domain`, how to run tests). Verify: file reviewed against `design.md`.
+- [x] 1.1 Add `CLAUDE.md` at the repo root (architecture, module rules, conventions, TDD rule for `core:domain`, how to run tests). Verify: file reviewed against `design.md`.
 - [ ] 1.2 Add GitHub Actions workflow: build `androidApp`, run all host tests on every push and pull request. Verify: first run is green on `main`.
 - [ ] 1.3 Add detekt and ktlint to the build and to the workflow; fix findings in existing code. Verify: `./gradlew detekt ktlintCheck` passes locally and in CI.
 - [ ] 1.4 Add Dependabot configuration for Gradle and GitHub Actions. Verify: file validated by GitHub (no error in the Dependabot tab).
