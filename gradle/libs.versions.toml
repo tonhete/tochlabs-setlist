@@ -20,6 +20,9 @@ ksp = "2.3.12"
 kotlinx-coroutines = "1.11.0"
 kotlinx-datetime = "0.8.0"
 kotlinx-serialization = "1.12.0"
+room3 = "3.0.3"
+sqlite = "2.7.1"
+koin = "4.2.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -48,6 +51,12 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+room3-runtime = { module = "androidx.room3:room3-runtime", version.ref = "room3" }
+room3-compiler = { module = "androidx.room3:room3-compiler", version.ref = "room3" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+sqlite-bundled-jvm = { module = "androidx.sqlite:sqlite-bundled-jvm", version.ref = "sqlite" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -59,3 +68,4 @@ detekt = { id = "dev.detekt", version.ref = "detekt" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-gradle" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+room3 = { id = "androidx.room3", version.ref = "room3" }

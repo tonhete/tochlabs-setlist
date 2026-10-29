@@ -20,12 +20,12 @@
 
 ## 3. Persistence
 
-- [ ] 3.1 Vertical slice spike: Room 3 plugin and KSP set up, one entity, one DAO, one host test with an in-memory database, running on Android. Verify: test green in Gradle and CI. Decide go/no-go on Room 3 here.
-- [ ] 3.2 Implement all entities, DAOs, converters, foreign keys and indexes from `design.md`; export schema v1. Verify: schema file committed.
-- [ ] 3.3 Write integration tests for cascades, `RESTRICT` on songs in use, `SET_NULL` on events, and item ordering. Verify: tests fail, then pass with 3.2.
-- [ ] 3.4 Implement mappers and repository implementations; atomic use cases (reorder, archive, restore, delete band, delete setlist). Verify: integration tests for each pass.
-- [ ] 3.5 Implement `app_settings` storage with defaults. Verify: tests pass.
-- [ ] 3.6 Platform database builders (Android, iOS) and Koin module for `core:data`. Verify: app starts on emulator and creates the database.
+- [x] 3.1 Vertical slice spike: Room 3 plugin and KSP set up, one entity, one DAO, one host test with an in-memory database, running on Android. Verify: test green in Gradle and CI. Decide go/no-go on Room 3 here.
+- [x] 3.2 Implement all entities, DAOs, converters, foreign keys and indexes from `design.md`; export schema v1. Verify: schema file committed.
+- [x] 3.3 Write integration tests for cascades, `RESTRICT` on songs in use, `SET_NULL` on events, and item ordering. Verify: tests fail, then pass with 3.2.
+- [x] 3.4 Implement mappers and repository implementations; atomic use cases (reorder, archive, restore, delete band, delete setlist). Verify: integration tests for each pass.
+- [x] 3.5 Implement `app_settings` storage with defaults. Verify: tests pass.
+- [x] 3.6 Platform database builders (Android, iOS) and Koin module for `core:data`. Verify: app starts on emulator and creates the database.
 
 ## 4. App shell
 

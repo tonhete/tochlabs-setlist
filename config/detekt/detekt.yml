@@ -16,5 +16,13 @@ naming:
     # Composable functions are PascalCase by convention.
     ignoreAnnotated: ['Composable']
 complexity:
+  TooManyFunctions:
+    # One test per spec scenario makes test classes long by design.
+    excludes:
+      - '**/test/**'
+      - '**/androidTest/**'
+      - '**/androidHostTest/**'
+      - '**/commonTest/**'
+      - '**/iosTest/**'
   LongParameterList:
     ignoreAnnotated: ['Composable']

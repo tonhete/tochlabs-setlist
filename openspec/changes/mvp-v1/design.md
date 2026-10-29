@@ -181,7 +181,7 @@ Base package `com.tochlabs.setlist`, one sub-package per module (for example `co
 
 ## Risks / Trade-offs
 
-- **Room 3, KSP, AGP 9 and Kotlin 2.4 together** are new and recent, and the Room 3 documentation was written against alpha artifacts. → Mitigation: the first implementation task is a thin vertical slice (one entity, one DAO, one test running on the host and on Android) before building anything else on top; the stable 3.0.3 is pinned, not the alpha.
+- **Room 3, KSP, AGP 9 and Kotlin 2.4 together** are new and recent, and the Room 3 documentation was written against alpha artifacts. → Mitigation: the first implementation task is a thin vertical slice (one entity, one DAO, one test running on the host and on Android) before building anything else on top; the stable 3.0.3 is pinned, not the alpha. Spike result (task 3.1, 2026-10-29): go; Room 3.0.3 with KSP 2.3.12 and bundled SQLite 2.7.1 builds and passes host tests.
 - **iOS cannot be built on the developer's machine.** → Mitigation: keep platform code small and behind interfaces; add a macOS CI job as soon as iOS work starts; no iOS-only logic outside the table in decision 7.
 - **Runtime language override with Compose resources** may not apply to every string on iOS. → Mitigation: spike before the localization task; fallback is to apply the language at app start and ask the user to restart if the platform cannot switch live (which would require a change to the `app-settings` spec).
 - **Native PDF drawing on two platforms** doubles the rendering work. → Mitigation: a single layout model, tested in common code; the platform code only draws it. A cross-platform PDF library is a possible later replacement.
