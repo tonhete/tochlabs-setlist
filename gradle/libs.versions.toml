@@ -13,7 +13,7 @@ androidx-testRunner = "1.7.0"
 composeMultiplatform = "1.12.2"
 junit = "4.13.2"
 kotlin = "2.4.21"
-material3 = "1.12.0-alpha03"
+material3 = "1.13.0-beta01"
 detekt = "2.0.0-alpha.6"
 ktlint-gradle = "14.2.0"
 
