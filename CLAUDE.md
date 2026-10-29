@@ -42,8 +42,12 @@ Data flow: Room -> repository `Flow` -> ViewModel -> `StateFlow<UiState>` -> Com
 - Run tests (Windows PowerShell, repo root): `.\gradlew.bat testAndroidHostTest`; one module: `.\gradlew.bat :core:domain:testAndroidHostTest`.
 - iOS compiles only on macOS; `kotlin.native.ignoreDisabledTargets=true` is set so Windows/Linux builds skip it.
 
-## Workflow
+## Workflow (autonomous)
 
 - Specs are managed with OpenSpec (`openspec.cmd` on Windows). Validate with `openspec.cmd validate mvp-v1 --strict`.
-- Work through `tasks.md` in order, one task group at a time; tick the checkbox when its verification passes.
-- Ask before installing tools or touching anything outside the project folder. Never handle the user's credentials.
+- Work through `tasks.md` in order using `/opsx:apply mvp-v1`, several task groups per run, without waiting for approval between tasks. For each task: write the test first where `tasks.md` says so, implement, run `.\gradlew.bat ktlintCheck detekt testAndroidHostTest --continue`, fix failures, tick the checkbox only when its verification passes.
+- Commit once per finished task group (conventional message, one logical change), push when the group is green. Never commit failing code. Check the GitHub Actions run after pushing and fix it if it fails.
+- Check the current version of any library or tool on its official page before adding it.
+- Report briefly when a group ends: what was done, what failed and how it was fixed. Explain new concepts in 2-3 lines comparing with Java/.NET.
+- Stop and ask only when: a decision contradicts a spec or `design.md` and cannot be resolved by editing them reasonably; an irreversible action is needed (deleting data, force push, changing repo settings); installing software or touching anything outside the project folder; a spike (such as task 3.1) fails and the design must change.
+- Never request, read or store the user's credentials.
