@@ -84,8 +84,8 @@ Ordered by `position` (unique within a setlist). `kind` is `SONG` or `STOP`.
 | startTime | time | Required |
 | endTime | time, nullable | Present for range milestones. Not before `startTime` |
 
-## App settings (not part of the entity model)
-Stored as simple preferences, not as rows: language (`SYSTEM`, `ES`, `EN`) and default pause between songs (seconds).
+## App settings
+Stored in a single-row `app_settings` table (same Room database, see `design.md`): language (`SYSTEM`, `ES`, `EN`) and default pause between songs (seconds). Not related to the other entities.
 
 ## Derived values (never stored)
 - **Effective value** of a setlist item: the override if present, otherwise the song's original.
