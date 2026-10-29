@@ -1,0 +1,16 @@
+schema: spec-driven
+
+# Project context: constraints an agent cannot infer by reading the code.
+context: |
+  TochLabs Setlist is a free, ad-free, open-source (GPL-3.0) setlist manager for musicians who play in several bands.
+  Kotlin Multiplatform with Compose Multiplatform, Koin and Room KMP. Android first; iOS as soon as Android works.
+  Write all artifacts in English. The app UI is available in Spanish and English.
+  Specs describe observable behavior only: no class, library or framework names.
+  Product documents (data model, screens and flows, store listing) live in docs/product/.
+
+rules:
+  specs:
+    - Keep each requirement description under 500 characters; put edge cases in scenarios.
+    - Every requirement needs at least one scenario, written as testable WHEN/THEN.
+  tasks:
+    - Domain rules in core:domain are written test-first (TDD); list the test task before the implementation task.
