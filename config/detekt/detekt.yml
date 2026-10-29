@@ -1,0 +1,20 @@
+# Overrides on top of detekt's default config (buildUponDefaultConfig = true).
+style:
+  MagicNumber:
+    ignorePropertyDeclaration: true
+    ignoreCompanionObjectPropertyDeclaration: true
+    # Default test excludes plus the KMP Android host test source set.
+    excludes:
+      - '**/test/**'
+      - '**/androidTest/**'
+      - '**/androidHostTest/**'
+      - '**/commonTest/**'
+      - '**/iosTest/**'
+      - '**/*.kts'
+naming:
+  FunctionNaming:
+    # Composable functions are PascalCase by convention.
+    ignoreAnnotated: ['Composable']
+complexity:
+  LongParameterList:
+    ignoreAnnotated: ['Composable']
