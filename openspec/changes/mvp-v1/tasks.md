@@ -9,14 +9,14 @@
 
 ## 2. Model and domain rules (test first)
 
-- [ ] 2.1 Write tests in `core:domain` for validation (non-blank names and titles, 20-character instrument and tuning, pause 0 to 120 in steps of 5) from the `bands`, `song-catalog` and `app-settings` specs. Verify: tests fail for the right reason.
-- [ ] 2.2 Define `core:model` types (ids, Band, Song, Setlist, SetlistItem song/stop, Event, EventMilestone, settings) and implement validation. Verify: 2.1 tests pass.
-- [ ] 2.3 Write tests for duration calculation from `setlist-duration` (music-only, with stops, one pause per consecutive pair, linked pairs, stops as items, songs without duration, overrides do not change durations). Verify: tests fail.
-- [ ] 2.4 Implement `calculateDuration`. Verify: 2.3 tests pass.
-- [ ] 2.5 Write tests for change markers and link effectiveness from `setlists` (instrument, tuning, link only effective before a song, repeated songs). Verify: tests fail.
-- [ ] 2.6 Implement `computeMarkers` and link rules. Verify: 2.5 tests pass.
-- [ ] 2.7 Write tests and implement text normalisation (case and accent insensitive) used by search and import matching. Verify: tests pass.
-- [ ] 2.8 Define repository interfaces and `Clock` in `core:domain`. Verify: modules compile.
+- [x] 2.1 Write tests in `core:domain` for validation (non-blank names and titles, 20-character instrument and tuning, pause 0 to 120 in steps of 5) from the `bands`, `song-catalog` and `app-settings` specs. Verify: tests fail for the right reason.
+- [x] 2.2 Define `core:model` types (ids, Band, Song, Setlist, SetlistItem song/stop, Event, EventMilestone, settings) and implement validation. Verify: 2.1 tests pass.
+- [x] 2.3 Write tests for duration calculation from `setlist-duration` (music-only, with stops, one pause per consecutive pair, linked pairs, stops as items, songs without duration, overrides do not change durations). Verify: tests fail.
+- [x] 2.4 Implement `calculateDuration`. Verify: 2.3 tests pass.
+- [x] 2.5 Write tests for change markers and link effectiveness from `setlists` (instrument, tuning, link only effective before a song, repeated songs). Verify: tests fail.
+- [x] 2.6 Implement `computeMarkers` and link rules. Verify: 2.5 tests pass.
+- [x] 2.7 Write tests and implement text normalisation (case and accent insensitive) used by search and import matching. Verify: tests pass.
+- [x] 2.8 Define repository interfaces and `Clock` in `core:domain`. Verify: modules compile.
 
 ## 3. Persistence
 
