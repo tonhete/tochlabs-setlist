@@ -4,7 +4,7 @@
 - [x] 1.2 Add GitHub Actions workflow: build `androidApp`, run all host tests on every push and pull request. Verify: first run is green on `main`.
 - [x] 1.3 Add detekt and ktlint to the build and to the workflow; fix findings in existing code. Verify: `./gradlew detekt ktlintCheck` passes locally and in CI.
 - [x] 1.4 Add Dependabot configuration for Gradle and GitHub Actions. Verify: file validated by GitHub (no error in the Dependabot tab).
-- [ ] 1.5 Add and verify against official release pages the versions of KSP, `kotlinx-coroutines`, `kotlinx-datetime` and `kotlinx-serialization` in `libs.versions.toml`. Verify: sync succeeds.
+- [x] 1.5 Add and verify against official release pages the versions of KSP, `kotlinx-coroutines`, `kotlinx-datetime` and `kotlinx-serialization` in `libs.versions.toml`. Verify: sync succeeds.
 - [ ] 1.6 Remove template demo code (`Greeting`, `Platform*`, demo tests, demo UI) once the first real screen exists. Verify: build and tests pass.
 
 ## 2. Model and domain rules (test first)
