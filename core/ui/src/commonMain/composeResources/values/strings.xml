@@ -10,4 +10,11 @@
     <string name="coming_soon">Coming soon</string>
     <string name="duration_hours_minutes">%1$s h %2$s min</string>
     <string name="duration_minutes">%1$s min</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_add">Add</string>
+    <string name="action_search">Search</string>
+    <string name="action_clear">Clear</string>
+    <string name="error_required">Required</string>
 </resources>

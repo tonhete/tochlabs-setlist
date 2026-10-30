@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="song_new">New song</string>
+    <string name="song_edit">Edit song</string>
+    <string name="song_title">Title</string>
+    <string name="song_artist">Artist</string>
+    <string name="song_key">Original key</string>
+    <string name="song_bpm">Original BPM</string>
+    <string name="song_tuning">Original tuning</string>
+    <string name="song_tuning_standard">Standard</string>
+    <string name="song_tuning_hint">Empty means standard tuning</string>
+    <string name="song_duration">Duration</string>
+    <string name="song_minutes">min</string>
+    <string name="song_seconds">s</string>
+    <string name="song_no_duration">No duration</string>
+    <string name="song_missing_duration">Without a duration, setlist totals will be incomplete.</string>
+    <string name="song_duration_invalid">Seconds must be below 60</string>
+    <string name="song_bands">Bands that play it</string>
+    <string name="song_bands_none">Create a band to build its repertoire.</string>
+    <string name="song_delete">Delete song</string>
+    <string name="song_delete_title">Delete %1$s?</string>
+    <string name="song_delete_body">The song is removed from the catalogue and from every repertoire.</string>
+    <string name="song_in_use_title">Song in use</string>
+    <string name="song_in_use_body">It cannot be deleted because these setlists use it:</string>
+    <string name="action_ok">OK</string>
+    <string name="songs_search">Search by title or artist</string>
+    <string name="songs_empty_title">No songs yet</string>
+    <string name="songs_empty_body">Add the songs you play, typed by hand.</string>
+    <string name="songs_no_results">No songs match</string>
+    <string name="songs_band_empty">This band has no songs in its repertoire yet</string>
+    <string name="songs_originals_note">Key, BPM and tuning are the originals. Each setlist can override them.</string>
+</resources>

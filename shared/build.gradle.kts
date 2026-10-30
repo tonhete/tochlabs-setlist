@@ -39,6 +39,8 @@ kotlin {
             implementation(project(":core:data"))
             implementation(libs.koin.core)
             implementation(libs.navigation3.ui)
+            implementation(libs.androidx.lifecycle.viewmodelNavigation3)
+            implementation(libs.koin.compose.viewmodel)
             implementation(libs.kotlinx.serialization.core)
             implementation(project(":core:ui"))
 

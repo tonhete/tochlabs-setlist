@@ -40,6 +40,7 @@ include(":core:model")
 include(":core:domain")
 include(":core:data")
 include(":core:ui")
+include(":core:testing")
 
 include(":feature:setlists")
 include(":feature:songs")

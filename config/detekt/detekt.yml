@@ -17,6 +17,8 @@ naming:
     ignoreAnnotated: ['Composable']
 complexity:
   TooManyFunctions:
+    # Form ViewModels expose one small function per field.
+    allowedFunctionsPerClass: 15
     # One test per spec scenario makes test classes long by design.
     excludes:
       - '**/test/**'

@@ -17,6 +17,7 @@ androidApp -> shared -> feature:* -> core:ui, core:domain, core:model
 - `core:domain`: repository interfaces, pure business rules, use cases. No Android, no Room, no DI.
 - `core:data`: Room database, DAOs, mappers, repository implementations, `.setlist` codec, settings.
 - `core:ui`: theme, shared components, shared strings.
+- `core:testing`: in-memory repository fakes and ViewModel test helpers; test source sets only.
 - `feature:*` (setlists, songs, bands, calendar, stage, share): screens + ViewModels. Never depend on `core:data`.
 - `shared`: composition root (Koin, navigation, `App()`, iOS framework `Shared`).
 - `androidApp`: thin Android host (AGP 9 requires it separate).

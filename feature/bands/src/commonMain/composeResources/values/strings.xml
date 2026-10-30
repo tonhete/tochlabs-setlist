@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="band_new">New band</string>
+    <string name="band_edit">Edit band</string>
+    <string name="band_name">Name</string>
+    <string name="band_colour">Colour</string>
+    <string name="bands_empty_title">No bands yet</string>
+    <string name="bands_empty_body">Create a band to keep its songs, setlists and gigs apart from the others.</string>
+    <string name="bands_history">History</string>
+    <string name="band_archive">Archive</string>
+    <string name="band_restore">Restore</string>
+    <string name="band_delete">Delete for good</string>
+    <string name="band_archived">%1$s archived</string>
+    <string name="band_restored">%1$s restored</string>
+    <string name="band_deleted">%1$s deleted</string>
+    <string name="history_empty_title">No archived bands</string>
+    <string name="history_note">Archived bands keep their setlists and events. Restore a band to use it again, or delete it for good.</string>
+    <string name="delete_title">Delete %1$s?</string>
+    <string name="delete_body">This permanently removes:</string>
+    <string name="delete_songs_stay">Songs stay in the catalogue.</string>
+    <plurals name="songs_count">
+        <item quantity="one">%1$d song</item>
+        <item quantity="other">%1$d songs</item>
+    </plurals>
+    <plurals name="setlists_count">
+        <item quantity="one">%1$d setlist</item>
+        <item quantity="other">%1$d setlists</item>
+    </plurals>
+    <plurals name="events_count">
+        <item quantity="one">%1$d event</item>
+        <item quantity="other">%1$d events</item>
+    </plurals>
+    <plurals name="repertoire_count">
+        <item quantity="one">%1$d repertoire entry</item>
+        <item quantity="other">%1$d repertoire entries</item>
+    </plurals>
+</resources>

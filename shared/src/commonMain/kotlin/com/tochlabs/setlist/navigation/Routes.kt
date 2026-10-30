@@ -38,6 +38,20 @@ data object BandsRoute : AppRoute
 @Serializable
 data object SettingsRoute : AppRoute
 
+@Serializable
+data object BandHistoryRoute : AppRoute
+
+/** Ids travel as plain strings: value classes are not supported in saved navigation state on every platform. */
+@Serializable
+data class BandFormRoute(
+    val bandId: String? = null,
+) : AppRoute
+
+@Serializable
+data class SongFormRoute(
+    val songId: String? = null,
+) : AppRoute
+
 /** Bottom navigation tabs, each with its own back stack (docs/product/screens-and-flows.md). */
 enum class Tab(
     val root: AppRoute,

@@ -50,6 +50,7 @@ flowchart TD
 | `core:data` | Room database, DAOs, entity mappers, repository implementations, `.setlist` file codec, settings storage | `core:model`, `core:domain` |
 | `core:ui` | Theme, shared components (chips, sheets, reorderable list, duration and date formatting), shared strings, locale override | `core:model` |
 | `feature:*` | Screens, ViewModels and Koin module of one feature | `core:model`, `core:domain`, `core:ui` |
+| `core:testing` | In-memory fakes of the `core:domain` repositories, fake clock and id generator, ViewModel test helpers. Used only by test source sets | `core:domain` |
 | `shared` | Composition root: Koin wiring, navigation, `App()`, iOS entry point, framework `Shared` | all of the above |
 | `androidApp` | `Application`, `MainActivity`, manifest, intent filter for `.setlist` | `shared` |
 
@@ -91,7 +92,7 @@ Time is never read directly: `Clock` is injected wherever "today" matters (upcom
 - **Driver:** `androidx.sqlite:sqlite-bundled` 2.7.1 on both platforms, so Android and iOS run the same SQLite version.
 - **Schema export** to `core/data/schemas/`, committed, so every schema change is reviewable. The first release is version 1; later changes ship explicit migrations (no destructive fallback).
 - **DAOs are `suspend` or return `Flow`**, which is what Room requires outside Android.
-- **IDs** are UUID strings. **Timestamps** are epoch milliseconds. **Dates and times** are ISO text via column type converters (Room 3 names: `@ColumnTypeConverter`).
+- **IDs** are UUID strings, created through an injected `IdGenerator` (`core:domain` interface, UUID implementation in `core:data`) so tests get predictable ids. **Timestamps** are epoch milliseconds. **Dates and times** are ISO text via column type converters (Room 3 names: `@ColumnTypeConverter`).
 - **Database creation** is platform code: Android needs a `Context` to locate the file, iOS uses the documents directory. `core:data` exposes an `expect` builder with one `actual` per platform.
 
 Tables (columns as in `docs/product/data-model.md`):
@@ -134,7 +135,7 @@ flowchart LR
 
 ### 5. Navigation: Navigation 3
 
-Navigation 3 for Compose Multiplatform (`org.jetbrains.androidx.navigation3:navigation3-ui` 1.2.0), with `lifecycle-viewmodel-navigation3` for ViewModel scoping and Koin's navigation 3 integration. The back stack is plain state owned by the app, which suits four tabs with their own stacks. On iOS, destination keys need explicit polymorphic serialization; routes are a sealed interface of `@Serializable` types with a `SerializersModule`.
+Navigation 3 for Compose Multiplatform (`org.jetbrains.androidx.navigation3:navigation3-ui` 1.2.0), with `lifecycle-viewmodel-navigation3` for ViewModel scoping; screens get their ViewModel from Koin with `koinViewModel()`. Each tab has its own `NavDisplay`, and the entry decorators (saved state and ViewModel store) are created once per tab outside it, so a hidden tab keeps its screens and unsaved input; a screen's ViewModel is cleared only when the screen is popped. The back stack is plain state owned by the app, which suits four tabs with their own stacks. On iOS, destination keys need explicit polymorphic serialization; routes are a sealed interface of `@Serializable` types with a `SerializersModule`.
 
 Alternative: Navigation 2 for Compose. Rejected because new work targets Navigation 3 and moving later is a rewrite (per the Compose Multiplatform documentation). Alternatives such as Decompose or Voyager add a third-party framework for little gain here.
 
@@ -169,7 +170,7 @@ Strings live in Compose Multiplatform resources: shared strings in `core:ui`, fe
 |---|---|---|---|
 | Domain, test first | Durations, links, change markers, validation, import matching, normalisation. One test per spec scenario, named after it | `core:domain` `commonTest` | `kotlin-test` |
 | Data, integration | DAOs, mappers, foreign keys and cascades, atomic use cases, `.setlist` codec round trip, migrations once they exist | `core:data` host tests with an in-memory database | Room, bundled SQLite, coroutines test |
-| ViewModels | State produced for each flow, using fake repositories (no Room, no Koin) | each `feature:*` `commonTest` | `kotlin-test`, coroutines test |
+| ViewModels | State produced for each flow, using the fake repositories of `core:testing` (no Room, no Koin) | each `feature:*` `commonTest` | `kotlin-test`, coroutines test |
 | UI | None in the MVP | n/a | n/a |
 | Manual | Emulator pass of each spec's main flow before a release; stage mode and PDFs on a real device | n/a | n/a |
 

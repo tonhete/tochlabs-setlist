@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="song_new">Nueva canción</string>
+    <string name="song_edit">Editar canción</string>
+    <string name="song_title">Título</string>
+    <string name="song_artist">Artista</string>
+    <string name="song_key">Tono original</string>
+    <string name="song_bpm">BPM original</string>
+    <string name="song_tuning">Afinación original</string>
+    <string name="song_tuning_standard">Estándar</string>
+    <string name="song_tuning_hint">Vacío significa afinación estándar</string>
+    <string name="song_duration">Duración</string>
+    <string name="song_minutes">min</string>
+    <string name="song_seconds">s</string>
+    <string name="song_no_duration">Sin duración</string>
+    <string name="song_missing_duration">Sin duración, los totales de los setlists quedarán incompletos.</string>
+    <string name="song_duration_invalid">Los segundos deben ser menos de 60</string>
+    <string name="song_bands">Bandas que la tocan</string>
+    <string name="song_bands_none">Crea una banda para formar su repertorio.</string>
+    <string name="song_delete">Eliminar canción</string>
+    <string name="song_delete_title">¿Eliminar %1$s?</string>
+    <string name="song_delete_body">La canción se quita del catálogo y de todos los repertorios.</string>
+    <string name="song_in_use_title">Canción en uso</string>
+    <string name="song_in_use_body">No se puede eliminar porque la usan estos setlists:</string>
+    <string name="action_ok">Aceptar</string>
+    <string name="songs_search">Buscar por título o artista</string>
+    <string name="songs_empty_title">Todavía no hay canciones</string>
+    <string name="songs_empty_body">Añade las canciones que tocas, escritas a mano.</string>
+    <string name="songs_no_results">Ninguna canción coincide</string>
+    <string name="songs_band_empty">Esta banda todavía no tiene canciones en su repertorio</string>
+    <string name="songs_originals_note">Tono, BPM y afinación son los originales. Cada setlist puede cambiarlos.</string>
+</resources>

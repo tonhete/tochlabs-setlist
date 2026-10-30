@@ -34,9 +34,9 @@
 
 ## 5. Bands and song catalogue
 
-- [ ] 5.1 Bands: ViewModel tests with fake repositories, then list, create, edit, archive, restore, history and permanent deletion with confirmation. Verify: `bands` scenarios checked manually.
-- [ ] 5.2 Songs: ViewModel tests, then create, edit, optional duration, free-text tuning, search, delete only when unused. Verify: `song-catalog` scenarios checked manually.
-- [ ] 5.3 Repertoire per band and band filter. Verify: `bands` filter and `song-catalog` repertoire scenarios.
+- [x] 5.1 Bands: ViewModel tests with fake repositories, then list, create, edit, archive, restore, history and permanent deletion with confirmation. Verify: `bands` scenarios checked manually.
+- [x] 5.2 Songs: ViewModel tests, then create, edit, optional duration, free-text tuning, search, delete only when unused. Verify: `song-catalog` scenarios checked manually.
+- [x] 5.3 Repertoire per band and band filter. Verify: `bands` filter and `song-catalog` repertoire scenarios.
 
 ## 6. Setlists
 
