@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_setlists">Setlists</string>
+    <string name="tab_calendar">Calendar</string>
+    <string name="tab_songs">Songs</string>
+    <string name="tab_bands">Bands</string>
+    <string name="settings">Settings</string>
+    <string name="back">Back</string>
+    <string name="filter_all_bands">All</string>
+    <string name="coming_soon">Coming soon</string>
+    <string name="duration_hours_minutes">%1$s h %2$s min</string>
+    <string name="duration_minutes">%1$s min</string>
+</resources>

@@ -3,6 +3,7 @@
 plugins {
     id("tochlabs.kmp.library")
     id("tochlabs.compose")
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -37,6 +38,8 @@ kotlin {
             implementation(project(":core:domain"))
             implementation(project(":core:data"))
             implementation(libs.koin.core)
+            implementation(libs.navigation3.ui)
+            implementation(libs.kotlinx.serialization.core)
             implementation(project(":core:ui"))
 
             implementation(project(":feature:setlists"))

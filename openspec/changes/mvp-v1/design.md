@@ -134,7 +134,7 @@ flowchart LR
 
 ### 5. Navigation: Navigation 3
 
-Navigation 3 for Compose Multiplatform (`org.jetbrains.androidx.navigation3:navigation3-ui` 1.1.1), with `lifecycle-viewmodel-navigation3` for ViewModel scoping and Koin's navigation 3 integration. The back stack is plain state owned by the app, which suits four tabs with their own stacks. On iOS, destination keys need explicit polymorphic serialization; routes are a sealed interface of `@Serializable` types with a `SerializersModule`.
+Navigation 3 for Compose Multiplatform (`org.jetbrains.androidx.navigation3:navigation3-ui` 1.2.0), with `lifecycle-viewmodel-navigation3` for ViewModel scoping and Koin's navigation 3 integration. The back stack is plain state owned by the app, which suits four tabs with their own stacks. On iOS, destination keys need explicit polymorphic serialization; routes are a sealed interface of `@Serializable` types with a `SerializersModule`.
 
 Alternative: Navigation 2 for Compose. Rejected because new work targets Navigation 3 and moving later is a rewrite (per the Compose Multiplatform documentation). Alternatives such as Decompose or Voyager add a third-party framework for little gain here.
 

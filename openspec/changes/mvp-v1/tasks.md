@@ -5,7 +5,7 @@
 - [x] 1.3 Add detekt and ktlint to the build and to the workflow; fix findings in existing code. Verify: `./gradlew detekt ktlintCheck` passes locally and in CI.
 - [x] 1.4 Add Dependabot configuration for Gradle and GitHub Actions. Verify: file validated by GitHub (no error in the Dependabot tab).
 - [x] 1.5 Add and verify against official release pages the versions of KSP, `kotlinx-coroutines`, `kotlinx-datetime` and `kotlinx-serialization` in `libs.versions.toml`. Verify: sync succeeds.
-- [ ] 1.6 Remove template demo code (`Greeting`, `Platform*`, demo tests, demo UI) once the first real screen exists. Verify: build and tests pass.
+- [x] 1.6 Remove template demo code (`Greeting`, `Platform*`, demo tests, demo UI) once the first real screen exists. Verify: build and tests pass.
 
 ## 2. Model and domain rules (test first)
 
@@ -29,8 +29,8 @@
 
 ## 4. App shell
 
-- [ ] 4.1 Theme and shared components in `core:ui` (chips, sheets, duration and date formatting). Verify: preview on emulator.
-- [ ] 4.2 Koin `initKoin()`, Navigation 3 with four tabs (Setlists, Calendar, Songs, Bands) and serializable routes. Verify: tabs navigate on emulator, back stack restored after rotation.
+- [x] 4.1 Theme and shared components in `core:ui` (chips, sheets, duration and date formatting). Verify: preview on emulator.
+- [x] 4.2 Koin `initKoin()`, Navigation 3 with four tabs (Setlists, Calendar, Songs, Bands) and serializable routes. Verify: tabs navigate on emulator, back stack restored after rotation.
 
 ## 5. Bands and song catalogue
 

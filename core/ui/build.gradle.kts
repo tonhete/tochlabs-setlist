@@ -4,9 +4,22 @@ plugins {
 }
 
 kotlin {
+    android {
+        androidResources {
+            enable = true
+        }
+    }
+
     sourceSets {
         commonMain.dependencies {
             api(project(":core:model"))
+            api(libs.compose.components.resources)
         }
     }
+}
+
+// Shared strings and icons, used by the feature modules.
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "com.tochlabs.setlist.core.ui.resources"
 }
