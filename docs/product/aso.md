@@ -47,7 +47,7 @@ Read it on stage
 Stage mode shows one item at a time, large, with its key, tempo, notes and links. Swipe to move on.
 
 Share it with the band
-Export a stage PDF or a list PDF, print it, or send a .setlist file. Your bandmates open it in the app and the setlist and its songs are imported without duplicating songs they already have.
+Export a stage PDF or a list PDF, print it, or send a setlist file. Your bandmates open it in the app and the setlist and its songs are imported without duplicating songs they already have.
 
 Plan the gig day
 Add gigs and rehearsals to the calendar with a day sheet: arrival, backline, soundcheck, on stage, pack-up and departure, plus parking, contact and the linked setlist.
@@ -76,7 +76,7 @@ Léelo en el escenario
 El modo escenario muestra un elemento cada vez, en grande, con su tono, tempo, notas y enlaces. Desliza para avanzar.
 
 Compártelo con la banda
-Exporta un PDF de escenario o de lista, imprímelo o envía un archivo .setlist. Tus compañeros lo abren en la app y se importan el setlist y sus canciones sin duplicar las que ya tengan.
+Exporta un PDF de escenario o de lista, imprímelo o envía un archivo de setlist. Tus compañeros lo abren en la app y se importan el setlist y sus canciones sin duplicar las que ya tengan.
 
 Organiza el día del bolo
 Añade bolos y ensayos al calendario con su hoja de ruta: llegada, backline, prueba de sonido, en el escenario, recoger y salida, además del aparcamiento, el contacto y el setlist vinculado.
@@ -104,7 +104,7 @@ Real screens from the app only, per language, with minimal overlay text. Suggest
 2. Stage mode.
 3. Song linked to the next with a transition.
 4. Band filter and several bands.
-5. Export: PDF and `.setlist` file.
+5. Export: PDF and setlist file.
 6. Calendar and event roadmap.
 
 ## Other assets to prepare

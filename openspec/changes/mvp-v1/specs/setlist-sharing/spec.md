@@ -6,18 +6,18 @@ Lets a musician send a complete setlist to the rest of the band as a single file
 
 ## ADDED Requirements
 
-### Requirement: Export a .setlist file
-The system SHALL export a setlist as a `.setlist` file that contains the order of items, the stops, the links and transition texts, the notes, the per-setlist overrides, the pause between songs and the catalogue data of every song used. The file MUST be shareable through the system share sheet.
+### Requirement: Export a setlist file
+The system SHALL export a setlist as a setlist file: a readable text file in JSON format with the `.json` extension, marked as a setlist file of this app. It SHALL contain the order of items, the stops, the links and transition texts, the notes, the per-setlist overrides, the pause between songs and the catalogue data of every song used. The file MUST be shareable through the system share sheet.
 
 #### Scenario: Export a file
 - **WHEN** the user chooses to share a setlist as a file
-- **THEN** a `.setlist` file is created with a descriptive name and its summary shows the number of songs, stops and the band
+- **THEN** a `.json` setlist file is created with a descriptive name and its summary shows the number of songs, stops and the band
 
-### Requirement: Import a .setlist file
-The system SHALL import a `.setlist` file into a new setlist of an active band chosen by the user, recreating every item, link, note and override. Importing MUST NOT modify any existing setlist.
+### Requirement: Import a setlist file
+The system SHALL import a setlist file into a new setlist of an active band chosen by the user, recreating every item, link, note and override. Importing MUST NOT modify any existing setlist.
 
 #### Scenario: Import into a band
-- **WHEN** the user opens a valid `.setlist` file and picks the band "Mareas"
+- **WHEN** the user opens a valid setlist file and picks the band "Mareas"
 - **THEN** a new setlist with the same content is created for "Mareas"
 
 #### Scenario: Existing setlist untouched
@@ -36,10 +36,14 @@ When importing, the system SHALL reuse songs that already exist in the receiver'
 - **THEN** it is added to the catalogue and to the repertoire of the chosen band
 
 ### Requirement: Reject invalid files
-The system SHALL reject a file that is not a valid `.setlist` file, and a file produced by a newer, incompatible version of the app, and MUST explain the reason without changing any data.
+The system SHALL reject a file that is not a valid setlist file, including JSON files of other apps, and a file produced by a newer, incompatible version of the app, and MUST explain the reason without changing any data.
 
 #### Scenario: Corrupt file
-- **WHEN** the user opens a corrupt file with the `.setlist` extension
+- **WHEN** the user opens a corrupt setlist file
+- **THEN** nothing is imported and the user is told the file cannot be read
+
+#### Scenario: JSON file of another app
+- **WHEN** the user opens a JSON file that is not a setlist file of this app
 - **THEN** nothing is imported and the user is told the file cannot be read
 
 #### Scenario: Newer format

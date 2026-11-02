@@ -13,7 +13,7 @@ Points where the specification fills a gap or follows the prototype and should b
 | 6 | Setlist needs a band | A setlist belongs to one active band; with no bands the user is asked to create one first | Implied by the band filter |
 | 7 | Band names | Not required to be unique | Not stated |
 | 8 | Song identity on import | Same title and artist, ignoring case and accents | Not stated; simplest reliable rule |
-| 9 | No accounts, no cloud | Data stays on the device; sharing is by file | Implied by "free, no ads" and the `.setlist` file |
+| 9 | No accounts, no cloud | Data stays on the device; sharing is by file | Implied by "free, no ads" and the setlist file |
 | 10 | Standard milestones | A new gig offers the seven standard milestones to add; they are not forced | Spec wording says "offer" |
 | 11 | Event types | Gig and rehearsal only | Prototype |
 | 12 | Language of the documents | Specs and product documents in English (public repository); chat and review in Spanish | Consistent with the English README |

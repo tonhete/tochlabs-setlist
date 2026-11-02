@@ -26,7 +26,7 @@ fun interface ExportTextsProvider {
 }
 
 /**
- * A `.setlist` file opened from outside the app (another app, the file manager) or picked with the
+ * A setlist file opened from outside the app (another app, the file manager) or picked with the
  * import button, waiting for the import screen. Holds the file's text.
  */
 class IncomingSetlistFiles {
@@ -51,5 +51,5 @@ class IncomingSetlistFiles {
 
 const val PDF_MIME_TYPE = "application/pdf"
 
-/** Generic binary type: messaging and mail apps accept it; the `.setlist` extension identifies the file. */
-const val SETLIST_MIME_TYPE = "application/octet-stream"
+/** Setlist files are readable JSON (design.md, decision 8). */
+const val SETLIST_MIME_TYPE = "application/json"

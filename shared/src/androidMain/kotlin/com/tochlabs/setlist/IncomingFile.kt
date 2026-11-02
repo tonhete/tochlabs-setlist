@@ -7,7 +7,7 @@ import com.tochlabs.setlist.feature.share.readSetlistText
 import org.koin.mp.KoinPlatform
 
 /**
- * Hands a `.setlist` file opened from another app to the import screen. A file that cannot be read
+ * Hands a setlist file opened from another app to the import screen. A file that cannot be read
  * is still handed over, as empty text, so the import screen can say so.
  */
 fun receiveSetlistFile(

@@ -33,7 +33,7 @@ Labels that the app provides, such as stop types, standard milestones, standard 
 - **AND** the song titles and notes typed by the user are unchanged
 
 ### Requirement: Language-independent files
-A `.setlist` file SHALL NOT depend on the language of the app that created it, and exports SHALL use the language selected when they are generated.
+A setlist file SHALL NOT depend on the language of the app that created it, and exports SHALL use the language selected when they are generated.
 
 #### Scenario: Exchange between languages
 - **WHEN** a setlist exported from an app in Spanish is imported into an app in English

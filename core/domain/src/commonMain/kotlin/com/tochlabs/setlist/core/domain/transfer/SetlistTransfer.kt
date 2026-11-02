@@ -4,7 +4,7 @@ import com.tochlabs.setlist.core.model.BandId
 import com.tochlabs.setlist.core.model.SetlistId
 import com.tochlabs.setlist.core.model.SetlistPackage
 
-/** Reads and writes `.setlist` files (design.md, decision 8). */
+/** Reads and writes setlist files (design.md, decision 8). */
 interface SetlistFileCodec {
     fun encode(pkg: SetlistPackage): String
 
@@ -17,7 +17,7 @@ sealed interface SetlistFileResult {
         val pkg: SetlistPackage,
     ) : SetlistFileResult
 
-    /** Not a `.setlist` file, or damaged. */
+    /** Not a setlist file of this app, or damaged. */
     data object Unreadable : SetlistFileResult
 
     /** Written by a newer, incompatible version of the app. */

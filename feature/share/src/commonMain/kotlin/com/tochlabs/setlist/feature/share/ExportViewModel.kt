@@ -43,7 +43,7 @@ data class ExportUiState(
     val canPrint: Boolean get() = mode != ExportMode.BAND_FILE
 }
 
-/** Stage PDF, list PDF or `.setlist` file of one setlist, to share or print. */
+/** Stage PDF, list PDF or setlist file of one setlist, to share or print. */
 class ExportViewModel(
     setlistId: SetlistId,
     private val transfer: SetlistTransferRepository,
@@ -104,7 +104,7 @@ class ExportViewModel(
     ): ExportFile {
         val baseName = safeFileName(listOfNotNull(pkg.setlist.name, pkg.setlist.date?.toString()).joinToString(" "))
         if (mode == ExportMode.BAND_FILE) {
-            return ExportFile("$baseName.setlist", SETLIST_MIME_TYPE, codec.encode(pkg).encodeToByteArray())
+            return ExportFile("$baseName - setlist.json", SETLIST_MIME_TYPE, codec.encode(pkg).encodeToByteArray())
         }
         val texts = texts.texts()
         val source = ExportSource(pkg.setlist, pkg.bandName, resolveItems(pkg.items, pkg.songs.associateBy { it.id }))

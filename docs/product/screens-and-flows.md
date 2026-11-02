@@ -17,7 +17,7 @@ flowchart LR
     SLD --> IE[Item editor sheet]
     SLD --> AS[Add song sheet] --> NS[New song form]
     SLD --> AP[Add stop sheet]
-    SL --> IM[Import .setlist]
+    SL --> IM[Import setlist file]
     CAL --> EV[Event detail]
     EV --> SLD
     SO --> NS
@@ -56,7 +56,7 @@ Type (speech, break, tuning, encore), duration stepper (default 60 s). The stop 
 Setlist name and position "n / total". Song: number, title, artist, key, BPM, duration, change markers, note, link text. Stop: type, duration, note. Next-item preview, previous and next buttons, horizontal swipe.
 
 ### Export and share sheet
-Three modes: stage PDF, list PDF, file for the band (`.setlist`, with a summary of songs, stops and band). Actions: share, print (not available for the band file).
+Three modes: stage PDF, list PDF, file for the band (a `.json` setlist file, with a summary of songs, stops and band). Actions: share, print (not available for the band file).
 
 ### Calendar
 Monthly grid starting on Monday with event markers, month navigation, agenda for the selected day or the whole month.
@@ -83,7 +83,7 @@ Band list with colour initial and summary, archive action. **History** section w
 
 1. **Build a setlist:** Setlists → new setlist → name, band, date → add songs (search or create) → add stops → reorder → adjust items → check the total.
 2. **Prepare a gig:** Calendar → new event → fill logistics and milestones → link the setlist → review the roadmap.
-3. **Share with the band:** Setlist detail → export → `.setlist` → share. Receiver opens the file → picks a band → new setlist created, missing songs added.
+3. **Share with the band:** Setlist detail → export → setlist file → share. Receiver opens the file → picks a band → new setlist created, missing songs added.
 4. **On stage:** Setlist detail → stage mode → swipe through items.
 5. **Retire a band:** Bands → archive → History → restore, or delete after confirmation.
 

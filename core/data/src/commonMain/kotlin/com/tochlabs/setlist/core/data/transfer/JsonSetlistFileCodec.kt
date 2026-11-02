@@ -23,8 +23,9 @@ import kotlinx.serialization.json.jsonPrimitive
 import kotlin.time.Instant
 
 /**
- * `.setlist` files as UTF-8 JSON (design.md, decision 8). Version "major.minor": a newer minor
- * version can be read (unknown fields are ignored), a newer major version cannot.
+ * Setlist files as UTF-8 JSON (design.md, decision 8). The `format` marker tells them apart from
+ * other JSON files. Version "major.minor": a newer minor version can be read (unknown fields are
+ * ignored), a newer major version cannot.
  */
 class JsonSetlistFileCodec : SetlistFileCodec {
     private val json =
@@ -39,10 +40,11 @@ class JsonSetlistFileCodec : SetlistFileCodec {
     override fun decode(text: String): SetlistFileResult =
         try {
             val root = json.parseToJsonElement(text).jsonObject
+            val marker = root["format"]?.jsonPrimitive?.content
             val version = root["formatVersion"]?.jsonPrimitive?.content.orEmpty()
             val major = version.substringBefore('.').toIntOrNull()
             when {
-                major == null || major < FORMAT_MAJOR -> SetlistFileResult.Unreadable
+                marker != FORMAT_MARKER || major == null || major < FORMAT_MAJOR -> SetlistFileResult.Unreadable
                 major > FORMAT_MAJOR -> SetlistFileResult.NewerVersion
                 else -> SetlistFileResult.Valid(json.decodeFromJsonElement(FileDto.serializer(), root).toPackage())
             }
@@ -52,12 +54,14 @@ class JsonSetlistFileCodec : SetlistFileCodec {
         }
 
     private companion object {
+        const val FORMAT_MARKER = "tochlabs-setlist"
         const val FORMAT_MAJOR = 1
         const val FORMAT_VERSION = "1.0"
     }
 
     private fun SetlistPackage.toDto() =
         FileDto(
+            format = FORMAT_MARKER,
             formatVersion = FORMAT_VERSION,
             exportedAt = exportedAt.toString(),
             band = bandName,
@@ -188,6 +192,7 @@ private fun required(text: String): String {
 
 @Serializable
 private data class FileDto(
+    val format: String,
     val formatVersion: String,
     val exportedAt: String,
     val band: String,

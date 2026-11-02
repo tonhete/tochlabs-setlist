@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         if (savedInstanceState == null) receiveSetlistFile(this, intent)
     }
 
-    /** The app is already open (single task) and another app opens a `.setlist` file with it. */
+    /** The app is already open (single task) and another app opens a setlist file with it. */
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         receiveSetlistFile(this, intent)

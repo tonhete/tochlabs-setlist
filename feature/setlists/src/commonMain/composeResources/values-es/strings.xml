@@ -49,7 +49,7 @@
     <string name="stage_empty">El setlist está vacío. Añade primero una canción.</string>
     <string name="action_export">Exportar y compartir</string>
     <string name="action_more">Más opciones</string>
-    <string name="action_import_file">Importar .setlist</string>
+    <string name="action_import_file">Importar setlist</string>
     <string name="action_reorder">Reordenar</string>
     <string name="action_done">Hecho</string>
     <string name="action_edit">Editar</string>

@@ -10,7 +10,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-// specs/setlist-export ("Share and print") and specs/setlist-sharing ("Export a .setlist file").
+// specs/setlist-export ("Share and print") and specs/setlist-sharing ("Export a setlist file").
 class ExportViewModelTest {
     private fun ExportViewModel.firstLine(env: ShareTestEnv) =
         (
@@ -93,7 +93,8 @@ class ExportViewModelTest {
             val file =
                 vm.state.value.ready!!
                     .file
-            assertEquals("Concierto Sala Norte 2026-11-20.setlist", file.name)
+            assertEquals("Concierto Sala Norte 2026-11-20 - setlist.json", file.name)
+            assertEquals("application/json", file.mimeType)
             val decoded = env.codec.decode(file.bytes.decodeToString()) as SetlistFileResult.Valid
             assertEquals(3, decoded.pkg.items.size)
             assertEquals("Mareas", decoded.pkg.bandName)

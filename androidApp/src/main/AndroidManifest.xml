@@ -19,9 +19,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!-- Open .setlist files (design.md, decision 8). The extension has no registered MIME type,
-                 so the filter matches generic binary files whose path ends in .setlist; file managers
-                 that hide the path are covered by the import button of the setlist list. -->
+            <!-- Open setlist files, which are JSON (design.md, decision 8). The app is offered for
+                 JSON files; the import screen rejects those that are not setlist files. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -30,15 +29,11 @@
 
                 <data android:scheme="content" />
                 <data android:scheme="file" />
-                <data android:host="*" />
-                <data android:mimeType="application/octet-stream" />
                 <data android:mimeType="application/json" />
-                <data android:pathPattern=".*\\.setlist" />
-                <data android:pathPattern=".*\\..*\\.setlist" />
-                <data android:pathPattern=".*\\..*\\..*\\.setlist" />
+                <data android:mimeType="text/json" />
             </intent-filter>
         </activity>
-        <!-- Shares exported PDFs and .setlist files with other apps (feature:share). -->
+        <!-- Shares exported PDFs and setlist files with other apps (feature:share). -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.exports"

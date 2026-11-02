@@ -3,7 +3,7 @@ package com.tochlabs.setlist.core.model
 import kotlin.time.Instant
 
 /**
- * Everything a `.setlist` file carries (specs/setlist-sharing): the setlist, its items in order and
+ * Everything a setlist file carries (specs/setlist-sharing): the setlist, its items in order and
  * the catalogue data of every song used. Ids are local to the file; importing gives new ones.
  */
 data class SetlistPackage(

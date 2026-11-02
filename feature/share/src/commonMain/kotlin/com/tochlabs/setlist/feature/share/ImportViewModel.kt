@@ -47,7 +47,7 @@ private data class Choice(
 )
 
 /**
- * Imports the `.setlist` file waiting in [inbox] into an active band (specs/setlist-sharing). A file
+ * Imports the setlist file waiting in [inbox] into an active band (specs/setlist-sharing). A file
  * that cannot be read changes nothing.
  */
 class ImportViewModel(

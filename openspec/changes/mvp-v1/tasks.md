@@ -57,8 +57,8 @@
 
 - [x] 9.1 Layout model for stage and list PDFs with tests in common code. Verify: tests pass.
 - [x] 9.2 Android `PdfRenderer`, share and print. Verify: PDFs open and print from an emulator or device.
-- [x] 9.3 `.setlist` codec with round-trip tests, version check and invalid-file rejection tests. Verify: tests pass.
-- [ ] 9.4 Export and import flows (song matching by normalised title and artist, single transaction), Android file association. Verify: export on one device, import on another, no duplicate songs.
+- [x] 9.3 Setlist file codec with round-trip tests, version check and invalid-file rejection tests. Verify: tests pass.
+- [x] 9.4 Export and import flows (song matching by normalised title and artist, single transaction), Android file association. Verify: export on one device, import on another, no duplicate songs.
 
 ## 10. Settings and localization
 

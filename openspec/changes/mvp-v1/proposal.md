@@ -12,7 +12,7 @@ Musicians who play in several bands keep their setlists in notes apps, spreadshe
 - Add duration calculation: total with or without stops, a configurable pause between songs, and a clear "incomplete" state when songs have no duration.
 - Add a stage mode for reading a setlist song by song while performing.
 - Add export to PDF (stage and list layouts) and printing.
-- Add a `.setlist` file to share a setlist with the band and import it on another device.
+- Add a setlist file (readable JSON) to share a setlist with the band and import it on another device.
 - Add a calendar of events (gigs and rehearsals) with a day sheet of timed milestones and an optional linked setlist.
 - Add app settings and full Spanish and English localization.
 

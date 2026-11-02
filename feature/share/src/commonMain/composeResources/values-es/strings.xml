@@ -6,7 +6,7 @@
     <string name="export_list_pdf">PDF de lista</string>
     <string name="export_list_pdf_desc">Tabla compacta con los totales, para la banda o la sala.</string>
     <string name="export_band_file">Archivo para la banda</string>
-    <string name="export_band_file_desc">Un archivo .setlist que tus compañeros abren en la app.</string>
+    <string name="export_band_file_desc">Un archivo de setlist (JSON legible) que tus compañeros abren en la app.</string>
     <string name="export_missing">Este setlist ya no existe.</string>
     <string name="action_share">Compartir</string>
     <string name="action_print">Imprimir</string>
@@ -27,7 +27,7 @@
     <string name="import_band_required">Elige una banda</string>
     <string name="import_no_bands">Crea primero una banda para importar en ella.</string>
     <string name="action_import">Importar</string>
-    <string name="import_unreadable">No se puede leer este archivo. No es un archivo .setlist o está dañado.</string>
+    <string name="import_unreadable">No se puede leer este archivo. No es un archivo de setlist de esta app o está dañado.</string>
     <string name="import_newer">Este archivo se creó con una versión más nueva de la app. Actualiza la app para importarlo.</string>
     <plurals name="share_songs">
         <item quantity="one">%1$s canción</item>

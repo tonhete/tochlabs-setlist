@@ -59,6 +59,7 @@ internal class JsonSetlistFileCodecTest {
     @Test
     fun theFileIsLanguageIndependentTypesAreStoredAsCodes() {
         val text = codec.encode(pkg)
+        assertTrue("\"format\": \"tochlabs-setlist\"" in text)
         assertTrue("\"formatVersion\": \"1.0\"" in text)
         assertTrue("\"break\"" in text)
         assertFalse("BREAK" in text)
@@ -104,6 +105,13 @@ internal class JsonSetlistFileCodecTest {
         val text = codec.encode(pkg).replace("\"Strato\"", "\"Guitarra acústica de doce cuerdas\"")
         val item = (codec.decode(text) as SetlistFileResult.Valid).pkg.items.first() as SetlistItem.SongItem
         assertEquals("Guitarra acústica de", item.instrument)
+    }
+
+    @Test
+    fun jsonOfAnotherAppIsUnreadable() {
+        val withoutMarker = codec.encode(pkg).replace("\"tochlabs-setlist\"", "\"something-else\"")
+        assertEquals(SetlistFileResult.Unreadable, codec.decode(withoutMarker))
+        assertEquals(SetlistFileResult.Unreadable, codec.decode("{\"formatVersion\": \"1.0\", \"items\": []}"))
     }
 
     private companion object {

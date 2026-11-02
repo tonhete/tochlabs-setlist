@@ -47,12 +47,12 @@ flowchart TD
 |---|---|---|
 | `core:model` | Immutable domain types (Band, Song, Setlist, SetlistItem, Event, EventMilestone, value types for ids, durations and validated text) | nothing |
 | `core:domain` | Repository interfaces, business rules as pure functions, use cases for multi-step operations, validation | `core:model` |
-| `core:data` | Room database, DAOs, entity mappers, repository implementations, `.setlist` file codec, settings storage | `core:model`, `core:domain` |
+| `core:data` | Room database, DAOs, entity mappers, repository implementations, setlist file codec, settings storage | `core:model`, `core:domain` |
 | `core:ui` | Theme, shared components (chips, sheets, reorderable list, duration and date formatting), shared strings, locale override | `core:model` |
 | `feature:*` | Screens, ViewModels and Koin module of one feature | `core:model`, `core:domain`, `core:ui` |
 | `core:testing` | In-memory fakes of the `core:domain` repositories, fake clock and id generator, ViewModel test helpers. Used only by test source sets | `core:domain` |
 | `shared` | Composition root: Koin wiring, navigation, `App()`, iOS entry point, framework `Shared` | all of the above |
-| `androidApp` | `Application`, `MainActivity`, manifest, intent filter for `.setlist` | `shared` |
+| `androidApp` | `Application`, `MainActivity`, manifest, intent filter for setlist files | `shared` |
 
 Rationale: features never see `core:data`, so a screen cannot talk to Room by accident, and rules in `core:domain` cannot depend on Android. Alternative considered: one `shared` module with packages. Rejected because package rules are conventions; module dependencies are enforced by the compiler, and the structure was already agreed.
 
@@ -131,7 +131,7 @@ flowchart LR
 - Repositories expose `Flow` for reads and `suspend` functions for writes. The database is the single source of truth.
 - Each screen has one ViewModel exposing one immutable `UiState` as `StateFlow`; screens collect it lifecycle-aware. User actions are ViewModel functions. One-off effects (messages, navigation requests) are modelled as state that the UI consumes, not as fire-and-forget events.
 - A ViewModel combines flows (setlist, its songs, settings) and runs the pure domain functions to produce totals and markers. No rule is evaluated in a composable.
-- Multi-step operations that must be atomic (archive and restore a band, delete a band, reorder, import a `.setlist`) are use cases that run inside one database transaction.
+- Multi-step operations that must be atomic (archive and restore a band, delete a band, reorder, import a setlist file) are use cases that run inside one database transaction.
 
 ### 5. Navigation: Navigation 3
 
@@ -151,14 +151,14 @@ Koin 4.2.2 (stable) with its Compose and ViewModel modules. Each `feature:*` and
 | PDF generation | `PdfRenderer` (input: a layout model of the setlist) | `PdfDocument` | `UIGraphicsPDFRenderer` |
 | Print | `Printer` | `PrintManager` | `UIPrintInteractionController` |
 | Share file or PDF | `FileSharer` | share intent with a content URI | `UIActivityViewController` |
-| Open a `.setlist` | `IncomingFile` events | intent filter in the manifest | document type declaration |
+| Open a setlist file | `IncomingFile` events | intent filter in the manifest | document type declaration |
 | Language override | `LocaleController` | per-app locale | applied through the resource environment |
 
 The PDF layouts (stage and list) are built from a platform-neutral layout model produced in `feature:share`, so what goes on the page is tested in common code and only the drawing is platform code.
 
-### 8. The `.setlist` file format
+### 8. The setlist file format
 
-A UTF-8 JSON document produced with `kotlinx.serialization`: `formatVersion`, `exportedAt`, band name (informational), the setlist (name, date, pause, items with overrides, links, notes, stops) and the list of songs used, each with a file-local id. Item and stop types are stored as codes, not as translated labels, so the file is language-independent. The importer rejects unknown major `formatVersion` values and invalid content before touching the database, and runs inside one transaction. Songs are matched to the catalogue by title and artist normalised for case and accents (the same normalisation as the catalogue search).
+A UTF-8 JSON document with the `.json` extension, produced with `kotlinx.serialization`. It is shared as `application/json`, so file managers and messaging apps show a readable text file rather than an unknown binary. Fields: a `format` marker (`tochlabs-setlist`) that tells it apart from other JSON files, `formatVersion`, `exportedAt`, band name (informational), the setlist (name, date, pause, items with overrides, links, notes, stops) and the list of songs used, each with a file-local id. Item and stop types are stored as codes, not as translated labels, so the file is language-independent. The importer rejects unknown major `formatVersion` values and invalid content before touching the database, and runs inside one transaction. Songs are matched to the catalogue by title and artist normalised for case and accents (the same normalisation as the catalogue search).
 
 ### 9. Localization
 
@@ -169,7 +169,7 @@ Strings live in Compose Multiplatform resources: shared strings in `core:ui`, fe
 | Level | Scope | Where | Tools |
 |---|---|---|---|
 | Domain, test first | Durations, links, change markers, validation, import matching, normalisation. One test per spec scenario, named after it | `core:domain` `commonTest` | `kotlin-test` |
-| Data, integration | DAOs, mappers, foreign keys and cascades, atomic use cases, `.setlist` codec round trip, migrations once they exist | `core:data` host tests with an in-memory database | Room, bundled SQLite, coroutines test |
+| Data, integration | DAOs, mappers, foreign keys and cascades, atomic use cases, setlist file codec round trip, migrations once they exist | `core:data` host tests with an in-memory database | Room, bundled SQLite, coroutines test |
 | ViewModels | State produced for each flow, using the fake repositories of `core:testing` (no Room, no Koin) | each `feature:*` `commonTest` | `kotlin-test`, coroutines test |
 | UI | None in the MVP | n/a | n/a |
 | Manual | Emulator pass of each spec's main flow before a release; stage mode and PDFs on a real device | n/a | n/a |
@@ -193,5 +193,5 @@ Base package `com.tochlabs.setlist`, one sub-package per module (for example `co
 ## Open Questions
 
 - ~~Which reorderable list approach to use~~ Decided in task 6.3: the multiplatform library `sh.calvin.reorderable` (Apache 2.0), used only inside `core:ui` (`ReorderableList.kt`), so it can be replaced without touching the features. Move-up and move-down buttons stay as the accessible alternative.
-- ~~File type declaration for `.setlist`~~ Decided in task 9.4 for Android: files are shared as `application/octet-stream` with the `.setlist` extension (messaging and mail apps accept it). The app opens them through a `VIEW` filter on that type with a `.setlist` path pattern, which works when the sender exposes the file name in the URI; for the rest, the setlist list has an import button that uses the system file picker. The iOS type identifier is decided in task 12.2.
+- ~~File type declaration for setlist files~~ Decided in task 9.4: `.json` files shared as `application/json`. On Android the app registers a `VIEW` filter for JSON, so it appears in "open with" for JSON files and rejects those without the `format` marker; the setlist list also has an import button with the system file picker. A first attempt with a custom `.setlist` extension and `application/octet-stream` was dropped: file managers did not offer the app (they hide the file name from the URI) and the generic binary type looked untrustworthy to users. The iOS type declaration is decided in task 12.2.
 - Exact versions of KSP, `kotlinx-coroutines`, `kotlinx-datetime` and `kotlinx-serialization`; each is verified when first added to the catalogue.

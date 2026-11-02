@@ -104,7 +104,7 @@ private class PdfPrintAdapter(
 actual fun rememberSetlistFilePicker(onPicked: (String?) -> Unit): () -> Unit {
     val context = LocalContext.current
     val current by rememberUpdatedState(onPicked)
-    // `.setlist` has no registered MIME type, so the picker shows every file and the import checks it.
+    // Some file managers label JSON as plain text or binary, so the picker shows every file and the import checks it.
     val launcher =
         rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
             if (uri != null) current(readSetlistText(context, uri))
@@ -112,7 +112,7 @@ actual fun rememberSetlistFilePicker(onPicked: (String?) -> Unit): () -> Unit {
     return { launcher.launch(arrayOf("*/*")) }
 }
 
-/** The text of a `.setlist` file, or null when it cannot be read or is too large to be one. */
+/** The text of a setlist file, or null when it cannot be read or is too large to be one. */
 fun readSetlistText(
     context: Context,
     uri: Uri,

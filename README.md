@@ -10,7 +10,7 @@ A free, ad-free, open-source setlist manager for musicians who play in more than
 - **Song catalogue** (entered by hand): key, BPM, tuning and duration per song
 - **Setlists** with name and date: drag-and-drop ordering, stops (speech, break, tuning, encore), links between songs with transition notes, per-song instrument, tuning and notes, and total duration with or without stops
 - **Stage mode** for reading the setlist on stage
-- **Export** to PDF, print, and share a `.setlist` file with the rest of the band
+- **Export** to PDF, print, and share a setlist file with the rest of the band
 - **Calendar** of events with a day sheet: arrival, backline, soundcheck, stage time, gig, load-out, parking and contact
 - **Band history**: archive and restore bands instead of deleting them
 - English and Spanish from day one
