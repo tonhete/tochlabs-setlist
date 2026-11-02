@@ -47,7 +47,7 @@
 
 ## 7. Stage mode
 
-- [ ] 7.1 ViewModel tests, then stage mode screen with song and stop information, navigation between items, exit. Verify: `stage-mode` scenarios on a real device.
+- [x] 7.1 ViewModel tests, then stage mode screen with song and stop information, navigation between items, exit. Verify: `stage-mode` scenarios on a real device.
 
 ## 8. Calendar
 
