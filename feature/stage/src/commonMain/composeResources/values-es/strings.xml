@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stage_position">%1$s / %2$s</string>
+    <string name="stage_exit">Salir del modo escenario</string>
+    <string name="stage_previous">Anterior</string>
+    <string name="stage_next">Siguiente</string>
+    <string name="stage_next_preview">Siguiente: %1$s</string>
+    <string name="stage_last">Último elemento</string>
+    <string name="stage_no_duration">Sin duración</string>
+    <string name="stage_empty">El setlist está vacío.</string>
+</resources>

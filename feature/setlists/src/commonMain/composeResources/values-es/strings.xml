@@ -46,6 +46,8 @@
     <string name="detail_empty_body">Añade la primera canción.</string>
     <string name="action_add_song">Añadir canción</string>
     <string name="action_add_stop">Añadir parada</string>
+    <string name="action_stage">Modo escenario</string>
+    <string name="stage_empty">El setlist está vacío. Añade primero una canción.</string>
     <string name="action_reorder">Reordenar</string>
     <string name="action_done">Hecho</string>
     <string name="action_edit">Editar</string>
@@ -58,21 +60,8 @@
     <string name="setlist_delete_body">Se eliminan el setlist y sus elementos. Las canciones siguen en el catálogo.</string>
     <string name="setlist_delete_body_event">Se eliminan el setlist y sus elementos. Las canciones siguen en el catálogo y el evento %1$s se queda sin setlist.</string>
 
-    <!-- Markers -->
-    <string name="marker_instrument">→ %1$s</string>
-    <string name="marker_tuning">Afinación %1$s</string>
-    <string name="marker_key">Tono %1$s (orig. %2$s)</string>
-    <string name="marker_tempo">%1$s BPM (orig. %2$s)</string>
-    <string name="marker_repeated">Repetida</string>
-    <string name="marker_linked">Enlazada</string>
-    <string name="tuning_standard">Estándar</string>
-    <string name="value_none">ninguno</string>
 
     <!-- Stops -->
-    <string name="stop_speech">Discurso</string>
-    <string name="stop_break">Descanso</string>
-    <string name="stop_tuning">Cambio de afinación</string>
-    <string name="stop_encore">Bis</string>
     <string name="stop_edit">Editar parada</string>
     <string name="stop_duration">Duración</string>
     <string name="stop_note">Nota</string>

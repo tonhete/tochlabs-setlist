@@ -472,4 +472,19 @@ class SetlistDetailViewModelTest {
             vm.toggleReorderMode()
             assertFalse(vm.state.value.reorderMode)
         }
+
+    // specs/stage-mode: "Open stage mode".
+    @Test
+    fun emptySetlist_stageModeDoesNotOpen() =
+        runViewModelTest {
+            val env = SetlistsTestEnv()
+            env.bothBands()
+            val setlist = env.setlist("Sala Norte")
+            val vm = env.detailViewModel(setlist.id)
+            keepActive(vm.state)
+            assertFalse(vm.state.value.canOpenStage)
+
+            env.addSong(setlist, env.song("Uno"))
+            assertTrue(vm.state.value.canOpenStage)
+        }
 }

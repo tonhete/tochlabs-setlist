@@ -32,6 +32,7 @@ import com.tochlabs.setlist.feature.setlists.SetlistFormScreen
 import com.tochlabs.setlist.feature.setlists.SetlistsScreen
 import com.tochlabs.setlist.feature.songs.SongFormScreen
 import com.tochlabs.setlist.feature.songs.SongsScreen
+import com.tochlabs.setlist.feature.stage.StageScreen
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -54,19 +55,7 @@ fun AppShell() {
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
-                Tab.entries.forEachIndexed { index, tab ->
-                    NavigationBarItem(
-                        selected = index == selected,
-                        onClick = {
-                            // Tapping the current tab again returns to its root.
-                            if (index == selected) stacks[index].popToRoot() else selected = index
-                        },
-                        icon = { Icon(painterResource(tab.icon), contentDescription = null) },
-                        label = { Text(stringResource(tab.label)) },
-                    )
-                }
-            }
+            if (stack.lastOrNull() !is StageRoute) AppNavigationBar(selected, stacks) { selected = it }
         },
     ) { padding ->
         // One NavDisplay per tab: switching tabs must not look like popping the other tab's screens.
@@ -77,6 +66,27 @@ fun AppShell() {
                 onBack = { stack.removeLastOrNull() },
                 entryDecorators = decorators[selected],
                 entryProvider = appEntries(stack),
+            )
+        }
+    }
+}
+
+@Composable
+private fun AppNavigationBar(
+    selected: Int,
+    stacks: List<NavBackStack<NavKey>>,
+    onSelect: (Int) -> Unit,
+) {
+    NavigationBar {
+        Tab.entries.forEachIndexed { index, tab ->
+            NavigationBarItem(
+                selected = index == selected,
+                onClick = {
+                    // Tapping the current tab again returns to its root.
+                    if (index == selected) stacks[index].popToRoot() else onSelect(index)
+                },
+                icon = { Icon(painterResource(tab.icon), contentDescription = null) },
+                label = { Text(stringResource(tab.label)) },
             )
         }
     }
@@ -111,8 +121,10 @@ private fun appEntries(stack: NavBackStack<NavKey>) =
                 setlistId = SetlistId(route.setlistId),
                 onBack = back,
                 onEdit = { stack.add(SetlistFormRoute(setlistId = it.value)) },
+                onOpenStage = { stack.add(StageRoute(it.value)) },
             )
         }
+        entry<StageRoute> { route -> StageScreen(SetlistId(route.setlistId), onExit = back) }
         entry<CalendarRoute> { PlaceholderScreen(Tab.CALENDAR, openSettings) }
         entry<SettingsRoute> { SettingsPlaceholderScreen(onBack = back) }
 

@@ -39,11 +39,14 @@ import com.tochlabs.setlist.core.ui.component.ActionIcon
 import com.tochlabs.setlist.core.ui.component.SetlistSheet
 import com.tochlabs.setlist.core.ui.component.Tag
 import com.tochlabs.setlist.core.ui.format.formatClock
+import com.tochlabs.setlist.core.ui.format.label
 import com.tochlabs.setlist.core.ui.resources.action_add
 import com.tochlabs.setlist.core.ui.resources.action_save
 import com.tochlabs.setlist.core.ui.resources.ic_add
 import com.tochlabs.setlist.core.ui.resources.ic_remove
 import com.tochlabs.setlist.core.ui.resources.ic_search
+import com.tochlabs.setlist.core.ui.resources.tuning_standard
+import com.tochlabs.setlist.core.ui.resources.value_none
 import com.tochlabs.setlist.feature.setlists.resources.Res
 import com.tochlabs.setlist.feature.setlists.resources.action_add_song
 import com.tochlabs.setlist.feature.setlists.resources.action_add_stop
@@ -70,8 +73,6 @@ import com.tochlabs.setlist.feature.setlists.resources.stop_minus_seconds
 import com.tochlabs.setlist.feature.setlists.resources.stop_note
 import com.tochlabs.setlist.feature.setlists.resources.stop_plus_minute
 import com.tochlabs.setlist.feature.setlists.resources.stop_plus_seconds
-import com.tochlabs.setlist.feature.setlists.resources.tuning_standard
-import com.tochlabs.setlist.feature.setlists.resources.value_none
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import com.tochlabs.setlist.core.ui.resources.Res as CoreRes
@@ -197,7 +198,7 @@ internal fun ItemEditorSheet(
     onDismiss: () -> Unit,
 ) {
     var draft by remember { mutableStateOf(initial) }
-    val none = stringResource(Res.string.value_none)
+    val none = stringResource(CoreRes.string.value_none)
     SetlistSheet(title = initial.song.title, onDismiss = onDismiss) {
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             OutlinedTextField(
@@ -223,7 +224,7 @@ internal fun ItemEditorSheet(
         ShortTextField(draft.instrument, stringResource(Res.string.item_instrument), null) {
             draft = draft.withInstrument(it)
         }
-        val originalTuning = draft.originalTuning ?: stringResource(Res.string.tuning_standard)
+        val originalTuning = draft.originalTuning ?: stringResource(CoreRes.string.tuning_standard)
         ShortTextField(draft.tuning, stringResource(Res.string.item_tuning), originalTuning) {
             draft = draft.withTuning(it)
         }

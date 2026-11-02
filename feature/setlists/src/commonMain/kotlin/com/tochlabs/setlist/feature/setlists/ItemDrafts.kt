@@ -1,25 +1,11 @@
 package com.tochlabs.setlist.feature.setlists
 
-import com.tochlabs.setlist.core.domain.setlist.ResolvedItem
 import com.tochlabs.setlist.core.domain.validation.SHORT_TEXT_MAX_LENGTH
 import com.tochlabs.setlist.core.domain.validation.limitShortText
 import com.tochlabs.setlist.core.model.SetlistItem
 import com.tochlabs.setlist.core.model.SetlistItemId
 import com.tochlabs.setlist.core.model.Song
-import com.tochlabs.setlist.core.model.SongId
 import com.tochlabs.setlist.core.model.StopType
-
-/** Pairs each item with its song; items whose song is missing are left out. */
-internal fun resolveItems(
-    items: List<SetlistItem>,
-    songs: Map<SongId, Song>,
-): List<ResolvedItem> =
-    items.mapNotNull { item ->
-        when (item) {
-            is SetlistItem.SongItem -> songs[item.songId]?.let { ResolvedItem.SongEntry(item, it) }
-            is SetlistItem.Stop -> ResolvedItem.StopEntry(item)
-        }
-    }
 
 /**
  * What the item editor sheet edits for one song of a setlist (specs/setlists, "Per-setlist overrides"

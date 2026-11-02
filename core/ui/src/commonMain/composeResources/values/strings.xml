@@ -17,4 +17,17 @@
     <string name="action_search">Search</string>
     <string name="action_clear">Clear</string>
     <string name="error_required">Required</string>
+    <!-- Setlist items: stop types and change markers, shared by setlists, stage and exports -->
+    <string name="marker_instrument">→ %1$s</string>
+    <string name="marker_tuning">Tuning %1$s</string>
+    <string name="marker_key">Key %1$s (orig. %2$s)</string>
+    <string name="marker_tempo">%1$s BPM (orig. %2$s)</string>
+    <string name="marker_repeated">Repeated</string>
+    <string name="marker_linked">Linked</string>
+    <string name="tuning_standard">Standard</string>
+    <string name="value_none">none</string>
+    <string name="stop_speech">Speech</string>
+    <string name="stop_break">Break</string>
+    <string name="stop_tuning">Tuning change</string>
+    <string name="stop_encore">Encore</string>
 </resources>

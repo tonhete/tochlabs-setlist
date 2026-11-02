@@ -10,6 +10,7 @@ import com.tochlabs.setlist.core.domain.setlist.DurationSummary
 import com.tochlabs.setlist.core.domain.setlist.ResolvedItem
 import com.tochlabs.setlist.core.domain.setlist.calculateDuration
 import com.tochlabs.setlist.core.domain.setlist.groupByDate
+import com.tochlabs.setlist.core.domain.setlist.resolveItems
 import com.tochlabs.setlist.core.domain.time.Clock
 import com.tochlabs.setlist.core.model.Band
 import com.tochlabs.setlist.core.model.BandId

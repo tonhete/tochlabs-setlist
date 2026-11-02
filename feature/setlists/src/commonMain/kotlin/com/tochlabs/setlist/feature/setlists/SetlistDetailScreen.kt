@@ -46,6 +46,7 @@ import com.tochlabs.setlist.core.ui.resources.action_cancel
 import com.tochlabs.setlist.core.ui.resources.action_delete
 import com.tochlabs.setlist.core.ui.resources.ic_delete
 import com.tochlabs.setlist.core.ui.resources.ic_edit
+import com.tochlabs.setlist.core.ui.resources.ic_play
 import com.tochlabs.setlist.core.ui.resources.ic_reorder
 import com.tochlabs.setlist.feature.setlists.resources.Res
 import com.tochlabs.setlist.feature.setlists.resources.action_add_song
@@ -53,6 +54,7 @@ import com.tochlabs.setlist.feature.setlists.resources.action_add_stop
 import com.tochlabs.setlist.feature.setlists.resources.action_done
 import com.tochlabs.setlist.feature.setlists.resources.action_edit
 import com.tochlabs.setlist.feature.setlists.resources.action_reorder
+import com.tochlabs.setlist.feature.setlists.resources.action_stage
 import com.tochlabs.setlist.feature.setlists.resources.added
 import com.tochlabs.setlist.feature.setlists.resources.added_repeated
 import com.tochlabs.setlist.feature.setlists.resources.detail_empty_body
@@ -63,6 +65,7 @@ import com.tochlabs.setlist.feature.setlists.resources.setlist_delete_body_event
 import com.tochlabs.setlist.feature.setlists.resources.setlist_delete_title
 import com.tochlabs.setlist.feature.setlists.resources.setlist_linked_event
 import com.tochlabs.setlist.feature.setlists.resources.setlist_no_date
+import com.tochlabs.setlist.feature.setlists.resources.stage_empty
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -88,6 +91,7 @@ fun SetlistDetailScreen(
     setlistId: SetlistId,
     onBack: () -> Unit,
     onEdit: (SetlistId) -> Unit,
+    onOpenStage: (SetlistId) -> Unit,
     viewModel: SetlistDetailViewModel =
         koinViewModel(key = "setlist-detail-${setlistId.value}") { parametersOf(setlistId.value) },
     addSong: AddSongViewModel = koinViewModel(key = "add-song-${setlistId.value}") { parametersOf(setlistId.value) },
@@ -96,24 +100,28 @@ fun SetlistDetailScreen(
     val addSongState by addSong.state.collectAsStateWithLifecycle()
     var sheet by remember { mutableStateOf<DetailSheet?>(null) }
     var confirmDelete by remember { mutableStateOf(false) }
+    var showStageEmpty by remember { mutableStateOf(false) }
     val snackbar = remember { SnackbarHostState() }
 
     // Deleted here, or no longer there (for example deleted with its band).
     val gone = state.deleted || (!state.loading && state.setlist == null)
     LaunchedEffect(gone) { if (gone) onBack() }
 
-    val message =
-        addSongState.message?.let {
-            stringResource(if (it.repeated) Res.string.added_repeated else Res.string.added, it.title)
-        }
-    MessageEffect(message, snackbar, addSong::messageShown)
+    DetailMessages(addSongState.message, addSong::messageShown, showStageEmpty, snackbar) { showStageEmpty = false }
 
     Scaffold(
         topBar = {
-            DetailTopBar(state, onBack, { onEdit(setlistId) }, viewModel::toggleReorderMode) {
-                confirmDelete =
-                    true
-            }
+            DetailTopBar(
+                state = state,
+                actions =
+                    DetailActions(
+                        onBack = onBack,
+                        onEdit = { onEdit(setlistId) },
+                        onToggleReorder = viewModel::toggleReorderMode,
+                        onDelete = { confirmDelete = true },
+                        onStage = { if (state.canOpenStage) onOpenStage(setlistId) else showStageEmpty = true },
+                    ),
+            )
         },
         snackbarHost = { SnackbarHost(snackbar) },
         bottomBar = {
@@ -153,27 +161,52 @@ fun SetlistDetailScreen(
     }
 }
 
+/** Snackbars: song added (with the duplicate warning) and "the setlist is empty" for stage mode. */
+@Composable
+private fun DetailMessages(
+    added: AddSongMessage?,
+    onAddedShown: () -> Unit,
+    stageEmpty: Boolean,
+    snackbar: SnackbarHostState,
+    onStageEmptyShown: () -> Unit,
+) {
+    val addedText =
+        added?.let { stringResource(if (it.repeated) Res.string.added_repeated else Res.string.added, it.title) }
+    MessageEffect(addedText, snackbar, onAddedShown)
+    MessageEffect(if (stageEmpty) stringResource(Res.string.stage_empty) else null, snackbar, onStageEmptyShown)
+}
+
+private class DetailActions(
+    val onBack: () -> Unit,
+    val onEdit: () -> Unit,
+    val onToggleReorder: () -> Unit,
+    val onDelete: () -> Unit,
+    val onStage: () -> Unit,
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DetailTopBar(
     state: SetlistDetailUiState,
-    onBack: () -> Unit,
-    onEdit: () -> Unit,
-    onToggleReorder: () -> Unit,
-    onDelete: () -> Unit,
+    actions: DetailActions,
 ) {
     TopAppBar(
         title = { Text(state.setlist?.name.orEmpty(), maxLines = 1) },
-        navigationIcon = { BackButton(onBack) },
+        navigationIcon = { BackButton(actions.onBack) },
         actions = {
             if (state.reorderMode) {
-                TextButton(onClick = onToggleReorder) { Text(stringResource(Res.string.action_done)) }
+                TextButton(onClick = actions.onToggleReorder) { Text(stringResource(Res.string.action_done)) }
             } else {
+                ActionIcon(CoreRes.drawable.ic_play, stringResource(Res.string.action_stage), actions.onStage)
                 if (state.rows.size > 1) {
-                    ActionIcon(CoreRes.drawable.ic_reorder, stringResource(Res.string.action_reorder), onToggleReorder)
+                    ActionIcon(
+                        CoreRes.drawable.ic_reorder,
+                        stringResource(Res.string.action_reorder),
+                        actions.onToggleReorder,
+                    )
                 }
-                ActionIcon(CoreRes.drawable.ic_edit, stringResource(Res.string.action_edit), onEdit)
-                ActionIcon(CoreRes.drawable.ic_delete, stringResource(Res.string.setlist_delete), onDelete)
+                ActionIcon(CoreRes.drawable.ic_edit, stringResource(Res.string.action_edit), actions.onEdit)
+                ActionIcon(CoreRes.drawable.ic_delete, stringResource(Res.string.setlist_delete), actions.onDelete)
             }
         },
     )

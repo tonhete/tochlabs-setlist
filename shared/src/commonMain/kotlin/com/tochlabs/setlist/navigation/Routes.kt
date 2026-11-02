@@ -59,6 +59,12 @@ data class SetlistDetailRoute(
     val setlistId: String,
 ) : AppRoute
 
+/** Full-screen stage mode; the tab bar is hidden while it is shown. */
+@Serializable
+data class StageRoute(
+    val setlistId: String,
+) : AppRoute
+
 @Serializable
 data class SongFormRoute(
     val songId: String? = null,

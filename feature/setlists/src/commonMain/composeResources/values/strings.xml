@@ -46,6 +46,8 @@
     <string name="detail_empty_body">Add the first song.</string>
     <string name="action_add_song">Add song</string>
     <string name="action_add_stop">Add stop</string>
+    <string name="action_stage">Stage mode</string>
+    <string name="stage_empty">The setlist is empty. Add a song first.</string>
     <string name="action_reorder">Reorder</string>
     <string name="action_done">Done</string>
     <string name="action_edit">Edit</string>
@@ -58,21 +60,8 @@
     <string name="setlist_delete_body">The setlist and its items are removed. The songs stay in the catalogue.</string>
     <string name="setlist_delete_body_event">The setlist and its items are removed. The songs stay in the catalogue and the event %1$s stays without a setlist.</string>
 
-    <!-- Markers -->
-    <string name="marker_instrument">→ %1$s</string>
-    <string name="marker_tuning">Tuning %1$s</string>
-    <string name="marker_key">Key %1$s (orig. %2$s)</string>
-    <string name="marker_tempo">%1$s BPM (orig. %2$s)</string>
-    <string name="marker_repeated">Repeated</string>
-    <string name="marker_linked">Linked</string>
-    <string name="tuning_standard">Standard</string>
-    <string name="value_none">none</string>
 
     <!-- Stops -->
-    <string name="stop_speech">Speech</string>
-    <string name="stop_break">Break</string>
-    <string name="stop_tuning">Tuning change</string>
-    <string name="stop_encore">Encore</string>
     <string name="stop_edit">Edit stop</string>
     <string name="stop_duration">Duration</string>
     <string name="stop_note">Note</string>

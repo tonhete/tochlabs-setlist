@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stage_position">%1$s / %2$s</string>
+    <string name="stage_exit">Exit stage mode</string>
+    <string name="stage_previous">Previous</string>
+    <string name="stage_next">Next</string>
+    <string name="stage_next_preview">Next: %1$s</string>
+    <string name="stage_last">Last item</string>
+    <string name="stage_no_duration">No duration</string>
+    <string name="stage_empty">The setlist is empty.</string>
+</resources>

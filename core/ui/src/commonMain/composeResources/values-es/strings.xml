@@ -17,4 +17,17 @@
     <string name="action_search">Buscar</string>
     <string name="action_clear">Borrar</string>
     <string name="error_required">Obligatorio</string>
+    <!-- Setlist items: stop types and change markers, shared by setlists, stage and exports -->
+    <string name="marker_instrument">→ %1$s</string>
+    <string name="marker_tuning">Afinación %1$s</string>
+    <string name="marker_key">Tono %1$s (orig. %2$s)</string>
+    <string name="marker_tempo">%1$s BPM (orig. %2$s)</string>
+    <string name="marker_repeated">Repetida</string>
+    <string name="marker_linked">Enlazada</string>
+    <string name="tuning_standard">Estándar</string>
+    <string name="value_none">ninguno</string>
+    <string name="stop_speech">Discurso</string>
+    <string name="stop_break">Descanso</string>
+    <string name="stop_tuning">Cambio de afinación</string>
+    <string name="stop_encore">Bis</string>
 </resources>

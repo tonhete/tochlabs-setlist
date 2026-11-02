@@ -13,6 +13,7 @@ import com.tochlabs.setlist.core.domain.setlist.ResolvedItem
 import com.tochlabs.setlist.core.domain.setlist.calculateDuration
 import com.tochlabs.setlist.core.domain.setlist.computeMarkers
 import com.tochlabs.setlist.core.domain.setlist.moved
+import com.tochlabs.setlist.core.domain.setlist.resolveItems
 import com.tochlabs.setlist.core.domain.validation.PauseRules
 import com.tochlabs.setlist.core.domain.validation.decreasePause
 import com.tochlabs.setlist.core.domain.validation.increasePause
@@ -80,6 +81,9 @@ data class SetlistDetailUiState(
             }
 
     val songCount: Int get() = rows.count { it.songNumber != null }
+
+    /** Stage mode does not open on an empty setlist (specs/stage-mode). */
+    val canOpenStage: Boolean get() = rows.isNotEmpty()
 
     val canDecreasePause: Boolean get() = (setlist?.pauseSeconds ?: 0) > PauseRules.MIN_SECONDS
 

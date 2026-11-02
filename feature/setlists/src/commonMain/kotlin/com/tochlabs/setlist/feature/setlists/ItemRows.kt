@@ -23,44 +23,31 @@ import com.tochlabs.setlist.core.domain.setlist.ItemMarkers
 import com.tochlabs.setlist.core.domain.setlist.ResolvedItem
 import com.tochlabs.setlist.core.domain.setlist.effectiveBpm
 import com.tochlabs.setlist.core.domain.setlist.effectiveKey
-import com.tochlabs.setlist.core.model.StopType
 import com.tochlabs.setlist.core.ui.component.ActionIcon
 import com.tochlabs.setlist.core.ui.component.DragHandleScope
 import com.tochlabs.setlist.core.ui.component.Tag
 import com.tochlabs.setlist.core.ui.component.TagTone
 import com.tochlabs.setlist.core.ui.format.formatClock
+import com.tochlabs.setlist.core.ui.format.label
 import com.tochlabs.setlist.core.ui.resources.ic_arrow_down
 import com.tochlabs.setlist.core.ui.resources.ic_arrow_up
 import com.tochlabs.setlist.core.ui.resources.ic_drag_handle
 import com.tochlabs.setlist.core.ui.resources.ic_link
+import com.tochlabs.setlist.core.ui.resources.marker_instrument
+import com.tochlabs.setlist.core.ui.resources.marker_key
+import com.tochlabs.setlist.core.ui.resources.marker_linked
+import com.tochlabs.setlist.core.ui.resources.marker_repeated
+import com.tochlabs.setlist.core.ui.resources.marker_tempo
+import com.tochlabs.setlist.core.ui.resources.marker_tuning
+import com.tochlabs.setlist.core.ui.resources.tuning_standard
+import com.tochlabs.setlist.core.ui.resources.value_none
 import com.tochlabs.setlist.feature.setlists.resources.Res
 import com.tochlabs.setlist.feature.setlists.resources.action_drag
 import com.tochlabs.setlist.feature.setlists.resources.action_move_down
 import com.tochlabs.setlist.feature.setlists.resources.action_move_up
-import com.tochlabs.setlist.feature.setlists.resources.marker_instrument
-import com.tochlabs.setlist.feature.setlists.resources.marker_key
-import com.tochlabs.setlist.feature.setlists.resources.marker_linked
-import com.tochlabs.setlist.feature.setlists.resources.marker_repeated
-import com.tochlabs.setlist.feature.setlists.resources.marker_tempo
-import com.tochlabs.setlist.feature.setlists.resources.marker_tuning
-import com.tochlabs.setlist.feature.setlists.resources.stop_break
-import com.tochlabs.setlist.feature.setlists.resources.stop_encore
-import com.tochlabs.setlist.feature.setlists.resources.stop_speech
-import com.tochlabs.setlist.feature.setlists.resources.stop_tuning
-import com.tochlabs.setlist.feature.setlists.resources.tuning_standard
-import com.tochlabs.setlist.feature.setlists.resources.value_none
-import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import com.tochlabs.setlist.core.ui.resources.Res as CoreRes
-
-internal fun StopType.label(): StringResource =
-    when (this) {
-        StopType.SPEECH -> Res.string.stop_speech
-        StopType.BREAK -> Res.string.stop_break
-        StopType.TUNING -> Res.string.stop_tuning
-        StopType.ENCORE -> Res.string.stop_encore
-    }
 
 /** A song or stop of the setlist. In reorder mode it shows a drag handle and move buttons. */
 @Composable
@@ -147,7 +134,7 @@ private fun SongContent(
                 tint = MaterialTheme.colorScheme.primary,
             )
             Text(
-                markers.transitionText ?: stringResource(Res.string.marker_linked),
+                markers.transitionText ?: stringResource(CoreRes.string.marker_linked),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.primary,
             )
@@ -159,25 +146,29 @@ private fun SongContent(
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun MarkerTags(markers: ItemMarkers) {
-    val none = stringResource(Res.string.value_none)
-    val standard = stringResource(Res.string.tuning_standard)
+    val none = stringResource(CoreRes.string.value_none)
+    val standard = stringResource(CoreRes.string.tuning_standard)
     val tags =
         buildList {
-            markers.instrumentChangeTo?.let { add(stringResource(Res.string.marker_instrument, it) to TagTone.ACCENT) }
+            markers.instrumentChangeTo?.let {
+                add(
+                    stringResource(CoreRes.string.marker_instrument, it) to TagTone.ACCENT,
+                )
+            }
             markers.tuningChange?.let {
                 add(
-                    stringResource(Res.string.marker_tuning, it.to ?: standard) to TagTone.ACCENT,
+                    stringResource(CoreRes.string.marker_tuning, it.to ?: standard) to TagTone.ACCENT,
                 )
             }
             markers.keyChange?.let {
-                add(stringResource(Res.string.marker_key, it.to ?: none, it.from ?: none) to TagTone.ACCENT)
+                add(stringResource(CoreRes.string.marker_key, it.to ?: none, it.from ?: none) to TagTone.ACCENT)
             }
             markers.tempoChange?.let {
                 val from = it.from?.toString() ?: none
-                add(stringResource(Res.string.marker_tempo, it.to?.toString() ?: none, from) to TagTone.ACCENT)
+                add(stringResource(CoreRes.string.marker_tempo, it.to?.toString() ?: none, from) to TagTone.ACCENT)
             }
-            if (markers.isRepeated) add(stringResource(Res.string.marker_repeated) to TagTone.WARNING)
-            if (markers.isLinkedFromPrevious) add(stringResource(Res.string.marker_linked) to TagTone.NEUTRAL)
+            if (markers.isRepeated) add(stringResource(CoreRes.string.marker_repeated) to TagTone.WARNING)
+            if (markers.isLinkedFromPrevious) add(stringResource(CoreRes.string.marker_linked) to TagTone.NEUTRAL)
         }
     if (tags.isEmpty()) return
     FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
