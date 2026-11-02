@@ -62,9 +62,9 @@
 
 ## 10. Settings and localization
 
-- [ ] 10.1 Spike: runtime language override with Compose resources on Android. Verify: language changes immediately; record result for iOS.
-- [ ] 10.2 Spanish and English strings for all modules, localized formats, built-in labels, language-independent files. Verify: both languages walked through on emulator.
-- [ ] 10.3 Settings screen: language, default pause, about. Verify: `app-settings` scenarios.
+- [x] 10.1 Spike: runtime language override with Compose resources on Android. Verify: language changes immediately; record result for iOS.
+- [x] 10.2 Spanish and English strings for all modules, localized formats, built-in labels, language-independent files. Verify: both languages walked through on emulator.
+- [x] 10.3 Settings screen: language, default pause, about. Verify: `app-settings` scenarios.
 
 ## 11. Release readiness
 

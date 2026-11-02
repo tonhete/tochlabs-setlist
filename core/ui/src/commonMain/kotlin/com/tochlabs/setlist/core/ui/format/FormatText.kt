@@ -1,7 +1,6 @@
 package com.tochlabs.setlist.core.ui.format
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.intl.Locale
 import com.tochlabs.setlist.core.ui.resources.Res
 import com.tochlabs.setlist.core.ui.resources.duration_hours_minutes
 import com.tochlabs.setlist.core.ui.resources.duration_minutes
@@ -9,9 +8,9 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
 import org.jetbrains.compose.resources.stringResource
 
-/** Spanish when the UI locale is Spanish, English otherwise (specs/localization). */
+/** The applied interface language (specs/localization); follows the in-app choice at once. */
 @Composable
-fun currentUiLanguage(): UiLanguage = if (Locale.current.language == "es") UiLanguage.ES else UiLanguage.EN
+fun currentUiLanguage(): UiLanguage = LocalUiLanguage.current
 
 /** Total in hours and minutes with translated units, for example "1 h 05 min" or "14 min". */
 @Composable

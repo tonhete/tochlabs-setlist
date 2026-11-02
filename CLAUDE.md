@@ -18,7 +18,7 @@ androidApp -> shared -> feature:* -> core:ui, core:domain, core:model
 - `core:data`: Room database, DAOs, mappers, repository implementations, setlist file codec, settings.
 - `core:ui`: theme, shared components, shared strings.
 - `core:testing`: in-memory repository fakes and ViewModel test helpers; test source sets only.
-- `feature:*` (setlists, songs, bands, calendar, stage, share): screens + ViewModels. Never depend on `core:data`.
+- `feature:*` (setlists, songs, bands, calendar, stage, share, settings): screens + ViewModels. Never depend on `core:data`.
 - `shared`: composition root (Koin, navigation, `App()`, iOS framework `Shared`).
 - `androidApp`: thin Android host (AGP 9 requires it separate).
 - `build-logic`: convention plugins `tochlabs.kmp.library`, `tochlabs.compose`, `tochlabs.kmp.feature`. Versions only in `gradle/libs.versions.toml`.

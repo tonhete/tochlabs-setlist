@@ -32,7 +32,7 @@ Constraints that shape the approach:
 flowchart TD
     androidApp --> shared
     iosApp -. framework .-> shared
-    shared --> FEAT["feature:* (setlists, songs, bands, calendar, stage, share)"]
+    shared --> FEAT["feature:* (setlists, songs, bands, calendar, stage, share, settings)"]
     shared --> data["core:data"]
     FEAT --> ui["core:ui"]
     FEAT --> domain["core:domain"]
@@ -152,7 +152,7 @@ Koin 4.2.2 (stable) with its Compose and ViewModel modules. Each `feature:*` and
 | Print | `Printer` | `PrintManager` | `UIPrintInteractionController` |
 | Share file or PDF | `FileSharer` | share intent with a content URI | `UIActivityViewController` |
 | Open a setlist file | `IncomingFile` events | intent filter in the manifest | document type declaration |
-| Language override | `LocaleController` | per-app locale | applied through the resource environment |
+| Language override | `AppLanguageEnvironment` (`core:ui`) | locale of the resources and `LocalConfiguration` | `AppleLanguages` and a recomposition key |
 
 The PDF layouts (stage and list) are built from a platform-neutral layout model produced in `feature:share`, so what goes on the page is tested in common code and only the drawing is platform code.
 
@@ -162,7 +162,11 @@ A UTF-8 JSON document with the `.json` extension, produced with `kotlinx.seriali
 
 ### 9. Localization
 
-Strings live in Compose Multiplatform resources: shared strings in `core:ui`, feature strings in each feature, with English as the default and Spanish as a translation. The in-app language choice (device, Spanish, English) must apply immediately, which requires overriding the resource locale at runtime. This is the least certain part of the stack on iOS and is isolated behind `LocaleController` (decision 7) and verified by an early task (see Risks).
+Strings live in Compose Multiplatform resources: shared strings in `core:ui`, feature strings in each feature, with English as the default and Spanish as a translation. The in-app language choice (device, Spanish, English) must apply immediately, which requires overriding the resource locale at runtime. This is the least certain part of the stack on iOS and is isolated behind `AppLanguageEnvironment` in `core:ui` (decision 7).
+
+Spike result (task 10.1, Android): the app root wraps the UI in `AppLanguageEnvironment`, which follows the stored choice. On Android it sets the default locale (used by resource reads outside the UI, such as the PDF texts), updates the activity resources (used by Material components) and provides a new `LocalConfiguration`. Every screen, the Material date and time pickers, the formats and the PDFs switch at once, and navigation and screen state are kept, because the UI is not rebuilt. This departs from the Compose Multiplatform documentation, which keys the whole UI on the locale and therefore loses navigation state. iOS follows the documented pattern (`AppleLanguages` plus a key) and is verified on a simulator in task 12.2; if it cannot switch live, the fallback in Risks applies.
+
+The settings screen lives in its own `feature:settings` module, which was not in the first module list.
 
 ### 10. Test strategy
 

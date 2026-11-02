@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_language">Language</string>
+    <string name="language_system">Follow the device</string>
+    <string name="language_es">Español</string>
+    <string name="language_en">English</string>
+    <string name="settings_default_pause">Default pause between songs</string>
+    <string name="settings_default_pause_note">Used for new setlists. Existing setlists keep their own pause.</string>
+    <string name="pause_seconds">%1$s s</string>
+    <string name="pause_decrease">Shorter pause</string>
+    <string name="pause_increase">Longer pause</string>
+    <string name="settings_about">About</string>
+    <string name="about_tagline">Free, no ads and open source, for musicians who play in several bands.</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_licence">Licence: %1$s</string>
+    <string name="about_source">Source code</string>
+</resources>

@@ -50,6 +50,7 @@ kotlin {
             implementation(project(":feature:calendar"))
             implementation(project(":feature:stage"))
             implementation(project(":feature:share"))
+            implementation(project(":feature:settings"))
         }
     }
 }

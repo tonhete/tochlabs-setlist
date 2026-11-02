@@ -4,6 +4,7 @@ import com.tochlabs.setlist.core.data.di.dataModule
 import com.tochlabs.setlist.feature.bands.bandsModule
 import com.tochlabs.setlist.feature.calendar.calendarModule
 import com.tochlabs.setlist.feature.setlists.setlistsModule
+import com.tochlabs.setlist.feature.settings.settingsModule
 import com.tochlabs.setlist.feature.share.shareModule
 import com.tochlabs.setlist.feature.songs.songsModule
 import com.tochlabs.setlist.feature.stage.stageModule
@@ -14,6 +15,16 @@ import org.koin.dsl.KoinAppDeclaration
 fun initKoin(platform: KoinAppDeclaration = {}) {
     startKoin {
         platform()
-        modules(dataModule, bandsModule, songsModule, setlistsModule, stageModule, calendarModule, shareModule)
+        modules(
+            dataModule,
+            bandsModule,
+            songsModule,
+            setlistsModule,
+            stageModule,
+            calendarModule,
+            shareModule,
+            settingsModule,
+            platformModule,
+        )
     }
 }

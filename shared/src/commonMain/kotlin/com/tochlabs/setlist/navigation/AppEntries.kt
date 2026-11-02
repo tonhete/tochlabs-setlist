@@ -17,6 +17,7 @@ import com.tochlabs.setlist.feature.calendar.EventFormScreen
 import com.tochlabs.setlist.feature.setlists.SetlistDetailScreen
 import com.tochlabs.setlist.feature.setlists.SetlistFormScreen
 import com.tochlabs.setlist.feature.setlists.SetlistsScreen
+import com.tochlabs.setlist.feature.settings.SettingsScreen
 import com.tochlabs.setlist.feature.share.ExportScreen
 import com.tochlabs.setlist.feature.share.ImportScreen
 import com.tochlabs.setlist.feature.share.IncomingSetlistFiles
@@ -36,7 +37,7 @@ internal fun appEntries(stack: NavBackStack<NavKey>) =
         calendarEntries(stack, back, openSettings)
         songEntries(stack, back, openSettings)
         bandEntries(stack, back, openSettings)
-        entry<SettingsRoute> { SettingsPlaceholderScreen(onBack = back) }
+        entry<SettingsRoute> { SettingsScreen(onBack = back) }
     }
 
 /** Setlists, their form and detail, and stage mode. */

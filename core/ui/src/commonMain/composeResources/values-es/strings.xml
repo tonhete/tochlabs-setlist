@@ -7,7 +7,6 @@
     <string name="settings">Ajustes</string>
     <string name="back">Atrás</string>
     <string name="filter_all_bands">Todas</string>
-    <string name="coming_soon">Próximamente</string>
     <string name="duration_hours_minutes">%1$s h %2$s min</string>
     <string name="duration_minutes">%1$s min</string>
     <string name="action_save">Guardar</string>

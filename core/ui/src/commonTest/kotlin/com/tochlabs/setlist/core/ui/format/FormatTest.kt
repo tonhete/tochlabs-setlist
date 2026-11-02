@@ -1,5 +1,6 @@
 package com.tochlabs.setlist.core.ui.format
 
+import com.tochlabs.setlist.core.model.AppLanguage
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
 import kotlin.test.Test
@@ -66,5 +67,23 @@ class FormatTest {
     fun timeRange() {
         assertEquals("20:00 – 21:00", formatTimeRange(LocalTime(20, 0), LocalTime(21, 0), UiLanguage.ES))
         assertEquals("20:00", formatTimeRange(LocalTime(20, 0), null, UiLanguage.ES))
+    }
+
+    // specs/localization: "Spanish and English interface".
+    @Test
+    fun deviceInSpanish_theAppIsInSpanish() {
+        assertEquals(UiLanguage.ES, resolveUiLanguage(AppLanguage.SYSTEM, deviceLanguage = "es"))
+    }
+
+    @Test
+    fun unsupportedDeviceLanguage_theAppIsInEnglish() {
+        assertEquals(UiLanguage.EN, resolveUiLanguage(AppLanguage.SYSTEM, deviceLanguage = "fr"))
+        assertEquals(UiLanguage.EN, resolveUiLanguage(AppLanguage.SYSTEM, deviceLanguage = "en"))
+    }
+
+    @Test
+    fun aChosenLanguageWinsOverTheDevice() {
+        assertEquals(UiLanguage.EN, resolveUiLanguage(AppLanguage.EN, deviceLanguage = "es"))
+        assertEquals(UiLanguage.ES, resolveUiLanguage(AppLanguage.ES, deviceLanguage = "fr"))
     }
 }
