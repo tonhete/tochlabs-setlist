@@ -47,6 +47,9 @@
     <string name="action_add_stop">Add stop</string>
     <string name="action_stage">Stage mode</string>
     <string name="stage_empty">The setlist is empty. Add a song first.</string>
+    <string name="action_export">Export and share</string>
+    <string name="action_more">More options</string>
+    <string name="action_import_file">Import .setlist</string>
     <string name="action_reorder">Reorder</string>
     <string name="action_done">Done</string>
     <string name="action_edit">Edit</string>

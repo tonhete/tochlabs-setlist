@@ -1,6 +1,7 @@
 package com.tochlabs.setlist.feature.setlists
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -13,8 +14,11 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -46,13 +50,17 @@ import com.tochlabs.setlist.core.ui.resources.action_cancel
 import com.tochlabs.setlist.core.ui.resources.action_delete
 import com.tochlabs.setlist.core.ui.resources.ic_delete
 import com.tochlabs.setlist.core.ui.resources.ic_edit
+import com.tochlabs.setlist.core.ui.resources.ic_more
 import com.tochlabs.setlist.core.ui.resources.ic_play
 import com.tochlabs.setlist.core.ui.resources.ic_reorder
+import com.tochlabs.setlist.core.ui.resources.ic_share
 import com.tochlabs.setlist.feature.setlists.resources.Res
 import com.tochlabs.setlist.feature.setlists.resources.action_add_song
 import com.tochlabs.setlist.feature.setlists.resources.action_add_stop
 import com.tochlabs.setlist.feature.setlists.resources.action_done
 import com.tochlabs.setlist.feature.setlists.resources.action_edit
+import com.tochlabs.setlist.feature.setlists.resources.action_export
+import com.tochlabs.setlist.feature.setlists.resources.action_more
 import com.tochlabs.setlist.feature.setlists.resources.action_reorder
 import com.tochlabs.setlist.feature.setlists.resources.action_stage
 import com.tochlabs.setlist.feature.setlists.resources.added
@@ -66,6 +74,7 @@ import com.tochlabs.setlist.feature.setlists.resources.setlist_delete_title
 import com.tochlabs.setlist.feature.setlists.resources.setlist_linked_event
 import com.tochlabs.setlist.feature.setlists.resources.setlist_no_date
 import com.tochlabs.setlist.feature.setlists.resources.stage_empty
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -92,6 +101,7 @@ fun SetlistDetailScreen(
     onBack: () -> Unit,
     onEdit: (SetlistId) -> Unit,
     onOpenStage: (SetlistId) -> Unit,
+    onExport: (SetlistId) -> Unit,
     viewModel: SetlistDetailViewModel =
         koinViewModel(key = "setlist-detail-${setlistId.value}") { parametersOf(setlistId.value) },
     addSong: AddSongViewModel = koinViewModel(key = "add-song-${setlistId.value}") { parametersOf(setlistId.value) },
@@ -103,9 +113,7 @@ fun SetlistDetailScreen(
     var showStageEmpty by remember { mutableStateOf(false) }
     val snackbar = remember { SnackbarHostState() }
 
-    // Deleted here, no longer there (deleted with its band), or hidden because its band was archived.
-    val gone = state.deleted || (!state.loading && (state.setlist == null || state.band == null))
-    LaunchedEffect(gone) { if (gone) onBack() }
+    LaunchedEffect(state.isGone) { if (state.isGone) onBack() }
 
     DetailMessages(addSongState.message, addSong::messageShown, showStageEmpty, snackbar) { showStageEmpty = false }
 
@@ -120,6 +128,7 @@ fun SetlistDetailScreen(
                         onToggleReorder = viewModel::toggleReorderMode,
                         onDelete = { confirmDelete = true },
                         onStage = { if (state.canOpenStage) onOpenStage(setlistId) else showStageEmpty = true },
+                        onExport = { onExport(setlistId) },
                     ),
             )
         },
@@ -182,6 +191,7 @@ private class DetailActions(
     val onToggleReorder: () -> Unit,
     val onDelete: () -> Unit,
     val onStage: () -> Unit,
+    val onExport: () -> Unit,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -205,11 +215,38 @@ private fun DetailTopBar(
                         actions.onToggleReorder,
                     )
                 }
-                ActionIcon(CoreRes.drawable.ic_edit, stringResource(Res.string.action_edit), actions.onEdit)
-                ActionIcon(CoreRes.drawable.ic_delete, stringResource(Res.string.setlist_delete), actions.onDelete)
+                ActionIcon(CoreRes.drawable.ic_share, stringResource(Res.string.action_export), actions.onExport)
+                MoreMenu(actions)
             }
         },
     )
+}
+
+/** Edit and delete, less frequent, in the overflow menu. */
+@Composable
+private fun MoreMenu(actions: DetailActions) {
+    var open by remember { mutableStateOf(false) }
+    Box {
+        ActionIcon(CoreRes.drawable.ic_more, stringResource(Res.string.action_more)) { open = true }
+        DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
+            DropdownMenuItem(
+                text = { Text(stringResource(Res.string.action_edit)) },
+                leadingIcon = { Icon(painterResource(CoreRes.drawable.ic_edit), contentDescription = null) },
+                onClick = {
+                    open = false
+                    actions.onEdit()
+                },
+            )
+            DropdownMenuItem(
+                text = { Text(stringResource(Res.string.setlist_delete), color = MaterialTheme.colorScheme.error) },
+                leadingIcon = { Icon(painterResource(CoreRes.drawable.ic_delete), contentDescription = null) },
+                onClick = {
+                    open = false
+                    actions.onDelete()
+                },
+            )
+        }
+    }
 }
 
 @Composable

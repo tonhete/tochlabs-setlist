@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tochlabs.setlist.core.model.BandId
 import com.tochlabs.setlist.core.model.SetlistId
+import com.tochlabs.setlist.core.ui.component.ActionIcon
 import com.tochlabs.setlist.core.ui.component.BandDot
 import com.tochlabs.setlist.core.ui.component.BandFilterChips
 import com.tochlabs.setlist.core.ui.component.EmptyState
@@ -36,8 +37,10 @@ import com.tochlabs.setlist.core.ui.component.TagTone
 import com.tochlabs.setlist.core.ui.format.dateText
 import com.tochlabs.setlist.core.ui.format.durationText
 import com.tochlabs.setlist.core.ui.resources.ic_add
+import com.tochlabs.setlist.core.ui.resources.ic_import
 import com.tochlabs.setlist.core.ui.resources.tab_setlists
 import com.tochlabs.setlist.feature.setlists.resources.Res
+import com.tochlabs.setlist.feature.setlists.resources.action_import_file
 import com.tochlabs.setlist.feature.setlists.resources.setlist_has_roadmap
 import com.tochlabs.setlist.feature.setlists.resources.setlist_incomplete
 import com.tochlabs.setlist.feature.setlists.resources.setlist_no_date
@@ -63,6 +66,8 @@ fun SetlistsScreen(
     onOpenSettings: () -> Unit,
     onAddSetlist: (preselectedBand: BandId?) -> Unit,
     onOpenSetlist: (SetlistId) -> Unit,
+    /** Opens the file picker to import a `.setlist` file. */
+    onImport: () -> Unit,
     viewModel: SetlistsViewModel = koinViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -71,7 +76,12 @@ fun SetlistsScreen(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(CoreRes.string.tab_setlists)) },
-                actions = { SettingsAction(onOpenSettings) },
+                actions = {
+                    if (!state.noBands) {
+                        ActionIcon(CoreRes.drawable.ic_import, stringResource(Res.string.action_import_file), onImport)
+                    }
+                    SettingsAction(onOpenSettings)
+                },
             )
         },
         floatingActionButton = {

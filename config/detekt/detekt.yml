@@ -3,6 +3,8 @@ style:
   MagicNumber:
     ignorePropertyDeclaration: true
     ignoreCompanionObjectPropertyDeclaration: true
+    # Enum entries such as text styles carry their sizes as data.
+    ignoreEnums: true
     # Default test excludes plus the KMP Android host test source set.
     excludes:
       - '**/test/**'

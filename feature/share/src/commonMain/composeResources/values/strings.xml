@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="export_title">Export and share</string>
+    <string name="export_stage_pdf">Stage PDF</string>
+    <string name="export_stage_pdf_desc">Large type, one item after another, to read on stage.</string>
+    <string name="export_list_pdf">List PDF</string>
+    <string name="export_list_pdf_desc">Compact table with the totals, for the band or the venue.</string>
+    <string name="export_band_file">File for the band</string>
+    <string name="export_band_file_desc">A .setlist file your bandmates open in the app.</string>
+    <string name="export_missing">This setlist no longer exists.</string>
+    <string name="action_share">Share</string>
+    <string name="action_print">Print</string>
+    <string name="action_close">Close</string>
+    <string name="pdf_stage_label">stage</string>
+    <string name="pdf_list_label">list</string>
+    <string name="pdf_col_title">Title</string>
+    <string name="pdf_col_artist">Artist</string>
+    <string name="pdf_col_key">Key</string>
+    <string name="pdf_col_time">Time</string>
+    <string name="pdf_col_changes">Changes</string>
+    <string name="pdf_total_with_stops">Total with stops: %1$s</string>
+    <string name="pdf_no_duration">no duration</string>
+    <string name="import_title">Import setlist</string>
+    <string name="import_from">From %1$s</string>
+    <string name="import_note">A new setlist is created and your setlists are not changed. Songs you already have are reused; the others are added to the band.</string>
+    <string name="import_band">Import into</string>
+    <string name="import_band_required">Choose a band</string>
+    <string name="import_no_bands">Create a band first to import into it.</string>
+    <string name="action_import">Import</string>
+    <string name="import_unreadable">This file cannot be read. It is not a .setlist file, or it is damaged.</string>
+    <string name="import_newer">This file was made with a newer version of the app. Update the app to import it.</string>
+    <plurals name="share_songs">
+        <item quantity="one">%1$s song</item>
+        <item quantity="other">%1$s songs</item>
+    </plurals>
+    <plurals name="share_stops">
+        <item quantity="one">%1$s stop</item>
+        <item quantity="other">%1$s stops</item>
+    </plurals>
+    <plurals name="pdf_incomplete">
+        <item quantity="one">Incomplete: %1$s song without duration</item>
+        <item quantity="other">Incomplete: %1$s songs without duration</item>
+    </plurals>
+</resources>

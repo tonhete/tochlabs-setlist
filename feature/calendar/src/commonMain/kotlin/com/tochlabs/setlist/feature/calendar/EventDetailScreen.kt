@@ -96,9 +96,7 @@ fun EventDetailScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     var sheet by remember { mutableStateOf<EventSheet?>(null) }
     var confirmDelete by remember { mutableStateOf(false) }
-    // Deleted, or hidden because its band was archived (specs/event-calendar, "Archived bands").
-    val gone = state.deleted || (!state.loading && (state.event == null || state.band == null))
-    LaunchedEffect(gone) { if (gone) onBack() }
+    LaunchedEffect(state.isGone) { if (state.isGone) onBack() }
 
     Scaffold(
         topBar = {

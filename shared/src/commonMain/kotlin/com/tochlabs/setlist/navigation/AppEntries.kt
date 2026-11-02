@@ -17,10 +17,15 @@ import com.tochlabs.setlist.feature.calendar.EventFormScreen
 import com.tochlabs.setlist.feature.setlists.SetlistDetailScreen
 import com.tochlabs.setlist.feature.setlists.SetlistFormScreen
 import com.tochlabs.setlist.feature.setlists.SetlistsScreen
+import com.tochlabs.setlist.feature.share.ExportScreen
+import com.tochlabs.setlist.feature.share.ImportScreen
+import com.tochlabs.setlist.feature.share.IncomingSetlistFiles
+import com.tochlabs.setlist.feature.share.rememberSetlistFilePicker
 import com.tochlabs.setlist.feature.songs.SongFormScreen
 import com.tochlabs.setlist.feature.songs.SongsScreen
 import com.tochlabs.setlist.feature.stage.StageScreen
 import kotlinx.datetime.LocalDate
+import org.koin.compose.koinInject
 
 /** Screens of one tab's back stack. Any route can be pushed on any tab, for example a setlist from an event. */
 internal fun appEntries(stack: NavBackStack<NavKey>) =
@@ -41,10 +46,14 @@ private fun EntryProviderScope<NavKey>.setlistEntries(
     openSettings: () -> Unit,
 ) {
     entry<SetlistsRoute> {
+        val inbox = koinInject<IncomingSetlistFiles>()
+        // An unreadable file still opens the import screen, which explains the problem.
+        val pickFile = rememberSetlistFilePicker { text -> inbox.offer(text.orEmpty()) }
         SetlistsScreen(
             onOpenSettings = openSettings,
             onAddSetlist = { band -> stack.add(SetlistFormRoute(bandId = band?.value)) },
             onOpenSetlist = { stack.add(SetlistDetailRoute(it.value)) },
+            onImport = pickFile,
         )
     }
     entry<SetlistFormRoute> { route ->
@@ -65,9 +74,20 @@ private fun EntryProviderScope<NavKey>.setlistEntries(
             onBack = back,
             onEdit = { stack.add(SetlistFormRoute(setlistId = it.value)) },
             onOpenStage = { stack.add(StageRoute(it.value)) },
+            onExport = { stack.add(ExportRoute(it.value)) },
         )
     }
     entry<StageRoute> { route -> StageScreen(SetlistId(route.setlistId), onExit = back) }
+    entry<ExportRoute> { route -> ExportScreen(SetlistId(route.setlistId), onBack = back) }
+    entry<ImportRoute> {
+        ImportScreen(
+            onImported = { id ->
+                back()
+                stack.add(SetlistDetailRoute(id.value))
+            },
+            onClose = back,
+        )
+    }
 }
 
 /** Calendar, event form and event sheet. */

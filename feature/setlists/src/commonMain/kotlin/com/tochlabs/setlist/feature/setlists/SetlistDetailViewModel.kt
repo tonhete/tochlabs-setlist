@@ -82,6 +82,9 @@ data class SetlistDetailUiState(
 
     val songCount: Int get() = rows.count { it.songNumber != null }
 
+    /** Deleted here, deleted with its band, or hidden because its band was archived: the screen closes. */
+    val isGone: Boolean get() = deleted || (!loading && (setlist == null || band == null))
+
     /** Stage mode does not open on an empty setlist (specs/stage-mode). */
     val canOpenStage: Boolean get() = rows.isNotEmpty()
 

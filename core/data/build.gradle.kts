@@ -2,6 +2,7 @@ plugins {
     id("tochlabs.kmp.library")
     alias(libs.plugins.ksp)
     alias(libs.plugins.room3)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 room3 {
@@ -21,6 +22,7 @@ kotlin {
             implementation(libs.room3.runtime)
             implementation(libs.sqlite.bundled)
             implementation(libs.koin.core)
+            implementation(libs.kotlinx.serialization.json)
         }
         androidMain.dependencies {
             implementation(libs.koin.android)

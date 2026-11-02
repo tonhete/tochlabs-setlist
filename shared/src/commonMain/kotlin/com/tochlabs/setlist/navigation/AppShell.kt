@@ -9,6 +9,8 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableIntStateOf
@@ -22,8 +24,10 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.tochlabs.setlist.feature.share.IncomingSetlistFiles
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
 
 /** Bottom navigation with one back stack per tab. Settings open from the app bar of any tab. */
 @Composable
@@ -41,6 +45,17 @@ fun AppShell() {
                 rememberViewModelStoreNavEntryDecorator<NavKey>(),
             )
         }
+
+    // A `.setlist` file opened from another app or picked to import: show the import screen.
+    val inbox = koinInject<IncomingSetlistFiles>()
+    val incoming by inbox.hasPending.collectAsState()
+    LaunchedEffect(incoming) {
+        if (incoming) {
+            selected = Tab.SETLISTS.ordinal
+            val setlists = stacks[Tab.SETLISTS.ordinal]
+            if (setlists.lastOrNull() != ImportRoute) setlists.add(ImportRoute)
+        }
+    }
 
     Scaffold(
         bottomBar = {

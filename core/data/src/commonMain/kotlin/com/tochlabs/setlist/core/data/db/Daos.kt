@@ -75,6 +75,10 @@ internal interface SongDao {
     @Query("SELECT * FROM songs WHERE id = :id")
     suspend fun get(id: String): SongEntity?
 
+    /** The whole catalogue at once, for import matching. */
+    @Query("SELECT * FROM songs")
+    suspend fun getAll(): List<SongEntity>
+
     @Insert
     suspend fun insert(song: SongEntity)
 

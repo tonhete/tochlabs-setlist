@@ -59,6 +59,15 @@ data class SetlistDetailRoute(
     val setlistId: String,
 ) : AppRoute
 
+@Serializable
+data class ExportRoute(
+    val setlistId: String,
+) : AppRoute
+
+/** Import of the `.setlist` file waiting in the inbox. */
+@Serializable
+data object ImportRoute : AppRoute
+
 /** Full-screen stage mode; the tab bar is hidden while it is shown. */
 @Serializable
 data class StageRoute(

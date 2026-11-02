@@ -193,5 +193,5 @@ Base package `com.tochlabs.setlist`, one sub-package per module (for example `co
 ## Open Questions
 
 - ~~Which reorderable list approach to use~~ Decided in task 6.3: the multiplatform library `sh.calvin.reorderable` (Apache 2.0), used only inside `core:ui` (`ReorderableList.kt`), so it can be replaced without touching the features. Move-up and move-down buttons stay as the accessible alternative.
-- File type declaration for `.setlist` (MIME type and iOS type identifier); decided in the sharing task, with no effect on the specs.
+- ~~File type declaration for `.setlist`~~ Decided in task 9.4 for Android: files are shared as `application/octet-stream` with the `.setlist` extension (messaging and mail apps accept it). The app opens them through a `VIEW` filter on that type with a `.setlist` path pattern, which works when the sender exposes the file name in the URI; for the rest, the setlist list has an import button that uses the system file picker. The iOS type identifier is decided in task 12.2.
 - Exact versions of KSP, `kotlinx-coroutines`, `kotlinx-datetime` and `kotlinx-serialization`; each is verified when first added to the catalogue.

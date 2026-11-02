@@ -46,7 +46,10 @@ data class EventDetailUiState(
     /** Setlists of the event's band not linked to another event. */
     val linkableSetlists: List<Setlist> = emptyList(),
     val deleted: Boolean = false,
-)
+) {
+    /** Deleted, or hidden because its band was archived (specs/event-calendar, "Archived bands"): the screen closes. */
+    val isGone: Boolean get() = deleted || (!loading && (event == null || band == null))
+}
 
 /** Event sheet: logistics, roadmap of milestones and linked setlist (specs/event-calendar). */
 @OptIn(ExperimentalCoroutinesApi::class)
