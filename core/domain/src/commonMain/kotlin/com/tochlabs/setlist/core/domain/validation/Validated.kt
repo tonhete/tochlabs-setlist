@@ -11,4 +11,13 @@ sealed interface Validated<out T> {
     ) : Validated<Nothing>
 }
 
-enum class ValidationError { REQUIRED, OUT_OF_RANGE, NOT_A_STEP }
+enum class ValidationError {
+    REQUIRED,
+    OUT_OF_RANGE,
+    NOT_A_STEP,
+
+    /** Milestones (docs/product/data-model.md). */
+    START_REQUIRED,
+    END_BEFORE_START,
+    LABEL_REQUIRED,
+}

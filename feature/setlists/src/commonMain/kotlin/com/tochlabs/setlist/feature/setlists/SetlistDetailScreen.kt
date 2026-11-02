@@ -103,8 +103,8 @@ fun SetlistDetailScreen(
     var showStageEmpty by remember { mutableStateOf(false) }
     val snackbar = remember { SnackbarHostState() }
 
-    // Deleted here, or no longer there (for example deleted with its band).
-    val gone = state.deleted || (!state.loading && state.setlist == null)
+    // Deleted here, no longer there (deleted with its band), or hidden because its band was archived.
+    val gone = state.deleted || (!state.loading && (state.setlist == null || state.band == null))
     LaunchedEffect(gone) { if (gone) onBack() }
 
     DetailMessages(addSongState.message, addSong::messageShown, showStageEmpty, snackbar) { showStageEmpty = false }

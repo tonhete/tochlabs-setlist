@@ -10,8 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
@@ -21,7 +19,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -37,13 +34,13 @@ import com.tochlabs.setlist.core.model.BandId
 import com.tochlabs.setlist.core.model.SetlistId
 import com.tochlabs.setlist.core.ui.component.ActionIcon
 import com.tochlabs.setlist.core.ui.component.BandDot
+import com.tochlabs.setlist.core.ui.component.DatePickerDialogFor
 import com.tochlabs.setlist.core.ui.format.dateText
 import com.tochlabs.setlist.core.ui.resources.action_cancel
 import com.tochlabs.setlist.core.ui.resources.action_save
 import com.tochlabs.setlist.core.ui.resources.error_required
 import com.tochlabs.setlist.core.ui.resources.ic_close
 import com.tochlabs.setlist.feature.setlists.resources.Res
-import com.tochlabs.setlist.feature.setlists.resources.action_ok
 import com.tochlabs.setlist.feature.setlists.resources.setlist_band
 import com.tochlabs.setlist.feature.setlists.resources.setlist_band_required
 import com.tochlabs.setlist.feature.setlists.resources.setlist_clear_date
@@ -166,25 +163,6 @@ private fun DateField(
         }
     }
     if (picking) {
-        val pickerState = rememberDatePickerState(initialSelectedDateMillis = date?.toUtcMillis())
-        DatePickerDialog(
-            onDismissRequest = { picking = false },
-            confirmButton = {
-                TextButton(onClick = {
-                    pickerState.selectedDateMillis?.let { onDateChange(utcMillisToDate(it)) }
-                    picking = false
-                }) { Text(stringResource(Res.string.action_ok)) }
-            },
-            dismissButton = {
-                TextButton(onClick = { picking = false }) { Text(stringResource(CoreRes.string.action_cancel)) }
-            },
-        ) { DatePicker(pickerState) }
+        DatePickerDialogFor(date, onPicked = onDateChange, onDismiss = { picking = false })
     }
 }
-
-// The date picker works with midnight UTC in milliseconds.
-private const val MILLIS_PER_DAY = 86_400_000L
-
-private fun LocalDate.toUtcMillis(): Long = toEpochDays() * MILLIS_PER_DAY
-
-private fun utcMillisToDate(millis: Long): LocalDate = LocalDate.fromEpochDays(millis.floorDiv(MILLIS_PER_DAY))

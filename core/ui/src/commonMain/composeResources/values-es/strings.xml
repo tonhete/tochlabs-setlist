@@ -11,6 +11,7 @@
     <string name="duration_hours_minutes">%1$s h %2$s min</string>
     <string name="duration_minutes">%1$s min</string>
     <string name="action_save">Guardar</string>
+    <string name="action_ok">Aceptar</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_delete">Eliminar</string>
     <string name="action_add">Añadir</string>
@@ -30,4 +31,15 @@
     <string name="stop_break">Descanso</string>
     <string name="stop_tuning">Cambio de afinación</string>
     <string name="stop_encore">Bis</string>
+    <!-- Events and milestones, shared by the calendar and the exports -->
+    <string name="event_gig">Concierto</string>
+    <string name="event_rehearsal">Ensayo</string>
+    <string name="milestone_arrival">Llegada</string>
+    <string name="milestone_backline">Backline</string>
+    <string name="milestone_soundcheck">Prueba de sonido</string>
+    <string name="milestone_on_stage">Subida al escenario</string>
+    <string name="milestone_gig">Concierto</string>
+    <string name="milestone_pack_up">Recogida</string>
+    <string name="milestone_departure">Salida</string>
+    <string name="milestone_custom">Otro</string>
 </resources>

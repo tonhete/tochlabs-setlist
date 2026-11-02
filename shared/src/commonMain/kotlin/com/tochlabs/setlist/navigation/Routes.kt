@@ -65,6 +65,19 @@ data class StageRoute(
     val setlistId: String,
 ) : AppRoute
 
+/** New event ([eventId] null), optionally on [date] (ISO text) for [bandId], or edit of an existing one. */
+@Serializable
+data class EventFormRoute(
+    val eventId: String? = null,
+    val date: String? = null,
+    val bandId: String? = null,
+) : AppRoute
+
+@Serializable
+data class EventDetailRoute(
+    val eventId: String,
+) : AppRoute
+
 @Serializable
 data class SongFormRoute(
     val songId: String? = null,

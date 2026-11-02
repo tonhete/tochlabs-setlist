@@ -14,34 +14,11 @@ import com.tochlabs.setlist.core.ui.resources.Res
 import com.tochlabs.setlist.core.ui.resources.back
 import com.tochlabs.setlist.core.ui.resources.coming_soon
 import com.tochlabs.setlist.core.ui.resources.ic_back
-import com.tochlabs.setlist.core.ui.resources.ic_settings
 import com.tochlabs.setlist.core.ui.resources.settings
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
-// Temporary tab and settings screens; the feature modules replace them (task groups 8 and 10).
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-internal fun PlaceholderScreen(
-    tab: Tab,
-    onOpenSettings: () -> Unit,
-) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(stringResource(tab.label)) },
-                actions = {
-                    IconButton(onClick = onOpenSettings) {
-                        Icon(painterResource(Res.drawable.ic_settings), stringResource(Res.string.settings))
-                    }
-                },
-            )
-        },
-    ) { padding ->
-        EmptyState(title = stringResource(Res.string.coming_soon), modifier = Modifier.padding(padding))
-    }
-}
+// Temporary settings screen; replaced by the settings feature (task group 10).
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -49,4 +49,22 @@ class FormatTest {
         assertEquals("12:00 PM", formatTime(LocalTime(12, 0), UiLanguage.EN))
         assertEquals("08:05", formatTime(LocalTime(8, 5), UiLanguage.ES))
     }
+
+    @Test
+    fun monthTitleFollowsTheLanguage() {
+        assertEquals("noviembre 2026", formatMonth(LocalDate(2026, 11, 14), UiLanguage.ES))
+        assertEquals("November 2026", formatMonth(LocalDate(2026, 11, 14), UiLanguage.EN))
+    }
+
+    @Test
+    fun weekdayInitialsStartOnMonday() {
+        assertEquals(listOf("L", "M", "X", "J", "V", "S", "D"), weekdayInitials(UiLanguage.ES))
+        assertEquals(listOf("M", "T", "W", "T", "F", "S", "S"), weekdayInitials(UiLanguage.EN))
+    }
+
+    @Test
+    fun timeRange() {
+        assertEquals("20:00 – 21:00", formatTimeRange(LocalTime(20, 0), LocalTime(21, 0), UiLanguage.ES))
+        assertEquals("20:00", formatTimeRange(LocalTime(20, 0), null, UiLanguage.ES))
+    }
 }

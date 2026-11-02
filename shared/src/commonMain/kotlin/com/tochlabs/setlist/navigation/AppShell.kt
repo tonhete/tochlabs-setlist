@@ -1,6 +1,7 @@
 package com.tochlabs.setlist.navigation
 
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -21,18 +22,6 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.tochlabs.setlist.core.model.BandId
-import com.tochlabs.setlist.core.model.SetlistId
-import com.tochlabs.setlist.core.model.SongId
-import com.tochlabs.setlist.feature.bands.BandFormScreen
-import com.tochlabs.setlist.feature.bands.BandHistoryScreen
-import com.tochlabs.setlist.feature.bands.BandsScreen
-import com.tochlabs.setlist.feature.setlists.SetlistDetailScreen
-import com.tochlabs.setlist.feature.setlists.SetlistFormScreen
-import com.tochlabs.setlist.feature.setlists.SetlistsScreen
-import com.tochlabs.setlist.feature.songs.SongFormScreen
-import com.tochlabs.setlist.feature.songs.SongsScreen
-import com.tochlabs.setlist.feature.stage.StageScreen
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -62,7 +51,8 @@ fun AppShell() {
         key(selected) {
             NavDisplay(
                 backStack = stack,
-                modifier = Modifier.padding(padding).consumeWindowInsets(padding),
+                // imePadding keeps forms and their app bar above the keyboard (the window is not panned).
+                modifier = Modifier.padding(padding).consumeWindowInsets(padding).imePadding(),
                 onBack = { stack.removeLastOrNull() },
                 entryDecorators = decorators[selected],
                 entryProvider = appEntries(stack),
@@ -91,63 +81,6 @@ private fun AppNavigationBar(
         }
     }
 }
-
-private fun appEntries(stack: NavBackStack<NavKey>) =
-    entryProvider<NavKey> {
-        val back: () -> Unit = { stack.removeLastOrNull() }
-        val openSettings: () -> Unit = { stack.add(SettingsRoute) }
-
-        entry<SetlistsRoute> {
-            SetlistsScreen(
-                onOpenSettings = openSettings,
-                onAddSetlist = { band -> stack.add(SetlistFormRoute(bandId = band?.value)) },
-                onOpenSetlist = { stack.add(SetlistDetailRoute(it.value)) },
-            )
-        }
-        entry<SetlistFormRoute> { route ->
-            SetlistFormScreen(
-                setlistId = route.setlistId?.let(::SetlistId),
-                preselectedBand = route.bandId?.let(::BandId),
-                onSaved = { id ->
-                    back()
-                    // A new setlist opens its detail, ready to add songs.
-                    if (route.setlistId == null) stack.add(SetlistDetailRoute(id.value))
-                },
-                onClose = back,
-            )
-        }
-        entry<SetlistDetailRoute> { route ->
-            SetlistDetailScreen(
-                setlistId = SetlistId(route.setlistId),
-                onBack = back,
-                onEdit = { stack.add(SetlistFormRoute(setlistId = it.value)) },
-                onOpenStage = { stack.add(StageRoute(it.value)) },
-            )
-        }
-        entry<StageRoute> { route -> StageScreen(SetlistId(route.setlistId), onExit = back) }
-        entry<CalendarRoute> { PlaceholderScreen(Tab.CALENDAR, openSettings) }
-        entry<SettingsRoute> { SettingsPlaceholderScreen(onBack = back) }
-
-        entry<SongsRoute> {
-            SongsScreen(
-                onOpenSettings = openSettings,
-                onAddSong = { stack.add(SongFormRoute()) },
-                onEditSong = { stack.add(SongFormRoute(it.value)) },
-            )
-        }
-        entry<SongFormRoute> { route -> SongFormScreen(route.songId?.let(::SongId), onDone = back) }
-
-        entry<BandsRoute> {
-            BandsScreen(
-                onOpenSettings = openSettings,
-                onOpenHistory = { stack.add(BandHistoryRoute) },
-                onAddBand = { stack.add(BandFormRoute()) },
-                onEditBand = { stack.add(BandFormRoute(it.value)) },
-            )
-        }
-        entry<BandHistoryRoute> { BandHistoryScreen(onBack = back) }
-        entry<BandFormRoute> { route -> BandFormScreen(route.bandId?.let(::BandId), onDone = back) }
-    }
 
 private fun NavBackStack<NavKey>.popToRoot() {
     while (size > 1) removeAt(lastIndex)

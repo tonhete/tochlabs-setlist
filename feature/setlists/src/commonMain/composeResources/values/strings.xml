@@ -25,7 +25,6 @@
     <string name="setlist_date">Date</string>
     <string name="setlist_pick_date">Choose date</string>
     <string name="setlist_clear_date">Remove date</string>
-    <string name="action_ok">OK</string>
 
     <!-- Detail -->
     <string name="setlist_linked_event">Event: %1$s</string>

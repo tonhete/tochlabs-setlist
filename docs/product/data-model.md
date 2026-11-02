@@ -80,7 +80,7 @@ Ordered by `position` (unique within a setlist). `kind` is `SONG` or `STOP`.
 |---|---|---|
 | eventId | reference | Required |
 | kind | enum | `ARRIVAL`, `BACKLINE`, `SOUNDCHECK`, `ON_STAGE`, `GIG`, `PACK_UP`, `DEPARTURE`, `CUSTOM` |
-| customLabel | text, nullable | Required when `kind` is `CUSTOM`. Standard kinds are labelled by the app in the current language |
+| customLabel | text, nullable | Required when `kind` is `CUSTOM`. For a standard kind it is the user's rename; when empty the app labels it in the current language |
 | startTime | time | Required |
 | endTime | time, nullable | Present for range milestones. Not before `startTime` |
 

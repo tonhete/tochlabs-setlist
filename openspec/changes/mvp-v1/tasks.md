@@ -51,7 +51,7 @@
 
 ## 8. Calendar
 
-- [ ] 8.1 ViewModel tests, then events, calendar and agenda views, milestones roadmap, logistics, linked setlist, archived bands. Verify: `event-calendar` scenarios.
+- [x] 8.1 ViewModel tests, then events, calendar and agenda views, milestones roadmap, logistics, linked setlist, archived bands. Verify: `event-calendar` scenarios.
 
 ## 9. Export and sharing
 

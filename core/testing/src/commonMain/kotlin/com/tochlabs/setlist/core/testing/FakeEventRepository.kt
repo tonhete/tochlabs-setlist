@@ -18,7 +18,9 @@ class FakeEventRepository(
     override fun observeEvents(bandId: BandId?): Flow<List<Event>> =
         combine(store.events, store.bands) { events, bands ->
             val active = bands.filterNot { it.isArchived }.map { it.id }.toSet()
-            events.filter { it.bandId in active && (bandId == null || it.bandId == bandId) }.sortedBy { it.date }
+            events
+                .filter { it.bandId in active && (bandId == null || it.bandId == bandId) }
+                .sortedWith(compareBy({ it.date }, { it.title.lowercase() }))
         }
 
     override fun observe(id: EventId): Flow<Event?> = store.events.map { list -> list.find { it.id == id } }
