@@ -47,6 +47,18 @@ data class BandFormRoute(
     val bandId: String? = null,
 ) : AppRoute
 
+/** New setlist ([setlistId] null), optionally for [bandId], or edit of an existing one. */
+@Serializable
+data class SetlistFormRoute(
+    val setlistId: String? = null,
+    val bandId: String? = null,
+) : AppRoute
+
+@Serializable
+data class SetlistDetailRoute(
+    val setlistId: String,
+) : AppRoute
+
 @Serializable
 data class SongFormRoute(
     val songId: String? = null,

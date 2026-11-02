@@ -3,6 +3,7 @@ package com.tochlabs.setlist.core.testing
 import com.tochlabs.setlist.core.model.Band
 import com.tochlabs.setlist.core.model.BandId
 import com.tochlabs.setlist.core.model.Event
+import com.tochlabs.setlist.core.model.EventMilestone
 import com.tochlabs.setlist.core.model.Setlist
 import com.tochlabs.setlist.core.model.SetlistId
 import com.tochlabs.setlist.core.model.SetlistItem
@@ -24,6 +25,7 @@ class FakeStore {
     val setlists = MutableStateFlow<List<Setlist>>(emptyList())
     val items = MutableStateFlow<Map<SetlistId, List<SetlistItem>>>(emptyMap())
     val events = MutableStateFlow<List<Event>>(emptyList())
+    val milestones = MutableStateFlow<List<EventMilestone>>(emptyList())
 
     fun activeBandIds(): Set<BandId> =
         bands.value
@@ -41,7 +43,13 @@ class FakeStore {
         bands.update { list -> list.filterNot { it.id == id } }
         setlists.update { list -> list.filterNot { it.bandId == id } }
         items.update { map -> map - setlistIds }
+        val eventIds =
+            events.value
+                .filter { it.bandId == id }
+                .map { it.id }
+                .toSet()
         events.update { list -> list.filterNot { it.bandId == id } }
+        milestones.update { list -> list.filterNot { it.eventId in eventIds } }
         repertoire.update { set -> set.filterNot { it.first == id }.toSet() }
     }
 }

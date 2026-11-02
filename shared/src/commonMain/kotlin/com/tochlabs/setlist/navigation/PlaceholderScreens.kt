@@ -19,7 +19,7 @@ import com.tochlabs.setlist.core.ui.resources.settings
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
-// Temporary tab and settings screens; the feature modules replace them (task groups 6 to 10).
+// Temporary tab and settings screens; the feature modules replace them (task groups 8 and 10).
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

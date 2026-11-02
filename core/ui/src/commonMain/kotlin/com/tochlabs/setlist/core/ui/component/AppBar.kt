@@ -22,8 +22,17 @@ fun ActionIcon(
     icon: DrawableResource,
     label: String,
     onClick: () -> Unit,
+) = ActionIcon(icon, label, enabled = true, onClick = onClick)
+
+/** Icon button with an accessible label that can be disabled, for example a stepper at its limit. */
+@Composable
+fun ActionIcon(
+    icon: DrawableResource,
+    label: String,
+    enabled: Boolean,
+    onClick: () -> Unit,
 ) {
-    IconButton(onClick = onClick) {
+    IconButton(onClick = onClick, enabled = enabled) {
         Icon(painterResource(icon), contentDescription = label)
     }
 }

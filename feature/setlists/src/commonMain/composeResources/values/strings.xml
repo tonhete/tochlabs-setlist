@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- List -->
+    <string name="setlists_new">New setlist</string>
+    <string name="setlists_upcoming">Upcoming</string>
+    <string name="setlists_show_past">Past (%1$s)</string>
+    <string name="setlists_hide_past">Hide past</string>
+    <string name="setlists_empty_title">No upcoming setlists</string>
+    <string name="setlists_empty_body">Create one for your next gig.</string>
+    <string name="setlists_no_bands_title">Create a band first</string>
+    <string name="setlists_no_bands_body">Every setlist belongs to a band. Add one in the Bands tab.</string>
+    <string name="setlist_has_roadmap">Roadmap</string>
+    <string name="setlist_incomplete">Incomplete</string>
+    <string name="setlist_no_date">No date</string>
+    <plurals name="setlist_songs">
+        <item quantity="one">%1$s song</item>
+        <item quantity="other">%1$s songs</item>
+    </plurals>
+
+    <!-- Form -->
+    <string name="setlist_edit">Edit setlist</string>
+    <string name="setlist_name">Name</string>
+    <string name="setlist_band">Band</string>
+    <string name="setlist_band_required">Choose a band</string>
+    <string name="setlist_date">Date</string>
+    <string name="setlist_pick_date">Choose date</string>
+    <string name="setlist_clear_date">Remove date</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Detail -->
+    <string name="setlist_linked_event">Event: %1$s</string>
+    <string name="total_with_stops">With stops</string>
+    <string name="total_music_only">Music only</string>
+    <string name="total_exact">Exact %1$s</string>
+    <plurals name="total_incomplete">
+        <item quantity="one">Incomplete: %1$s song without duration</item>
+        <item quantity="other">Incomplete: %1$s songs without duration</item>
+    </plurals>
+    <string name="breakdown_with_stops">Songs %1$s · Stops %2$s · Pauses %3$s × %4$s s · Links without pause: %5$s</string>
+    <string name="breakdown_music_only">Leaves out %1$s of stops and pauses</string>
+    <string name="pause_between">Pause between songs</string>
+    <string name="pause_seconds">%1$s s</string>
+    <string name="pause_decrease">Shorter pause</string>
+    <string name="pause_increase">Longer pause</string>
+    <string name="detail_empty_title">This setlist is empty</string>
+    <string name="detail_empty_body">Add the first song.</string>
+    <string name="action_add_song">Add song</string>
+    <string name="action_add_stop">Add stop</string>
+    <string name="action_reorder">Reorder</string>
+    <string name="action_done">Done</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_move_up">Move up</string>
+    <string name="action_move_down">Move down</string>
+    <string name="action_drag">Drag to reorder</string>
+    <string name="action_remove">Remove from setlist</string>
+    <string name="setlist_delete">Delete setlist</string>
+    <string name="setlist_delete_title">Delete %1$s?</string>
+    <string name="setlist_delete_body">The setlist and its items are removed. The songs stay in the catalogue.</string>
+    <string name="setlist_delete_body_event">The setlist and its items are removed. The songs stay in the catalogue and the event %1$s stays without a setlist.</string>
+
+    <!-- Markers -->
+    <string name="marker_instrument">→ %1$s</string>
+    <string name="marker_tuning">Tuning %1$s</string>
+    <string name="marker_key">Key %1$s (orig. %2$s)</string>
+    <string name="marker_tempo">%1$s BPM (orig. %2$s)</string>
+    <string name="marker_repeated">Repeated</string>
+    <string name="marker_linked">Linked</string>
+    <string name="tuning_standard">Standard</string>
+    <string name="value_none">none</string>
+
+    <!-- Stops -->
+    <string name="stop_speech">Speech</string>
+    <string name="stop_break">Break</string>
+    <string name="stop_tuning">Tuning change</string>
+    <string name="stop_encore">Encore</string>
+    <string name="stop_edit">Edit stop</string>
+    <string name="stop_duration">Duration</string>
+    <string name="stop_note">Note</string>
+    <string name="stop_added_at_end">The stop is added at the end. Move it into place afterwards.</string>
+    <string name="stop_minus_minute">One minute less</string>
+    <string name="stop_plus_minute">One minute more</string>
+    <string name="stop_minus_seconds">15 seconds less</string>
+    <string name="stop_plus_seconds">15 seconds more</string>
+
+    <!-- Item editor -->
+    <string name="item_key">Key here</string>
+    <string name="item_bpm">BPM here</string>
+    <string name="item_original">Original: %1$s</string>
+    <string name="item_instrument">Instrument</string>
+    <string name="item_tuning">Tuning here</string>
+    <string name="item_note">Note for the performance</string>
+    <string name="item_link">Linked to the next song</string>
+    <string name="item_transition">Transition, for example “end on E”</string>
+    <string name="item_link_no_effect">The next item is not a song, so the link has no effect for now.</string>
+
+    <!-- Add song -->
+    <string name="add_song_search">Search your songs</string>
+    <string name="add_song_present">Already in setlist</string>
+    <string name="add_song_create">Create “%1$s”</string>
+    <string name="add_song_no_results">No songs match</string>
+    <string name="add_song_note">In this version songs are typed by hand.</string>
+    <string name="added">%1$s added</string>
+    <string name="added_repeated">%1$s added. It was already in the setlist.</string>
+</resources>

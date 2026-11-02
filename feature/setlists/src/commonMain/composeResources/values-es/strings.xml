@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- List -->
+    <string name="setlists_new">Nuevo setlist</string>
+    <string name="setlists_upcoming">Próximos</string>
+    <string name="setlists_show_past">Pasados (%1$s)</string>
+    <string name="setlists_hide_past">Ocultar pasados</string>
+    <string name="setlists_empty_title">No hay setlists próximos</string>
+    <string name="setlists_empty_body">Crea uno para tu próximo concierto.</string>
+    <string name="setlists_no_bands_title">Crea primero una banda</string>
+    <string name="setlists_no_bands_body">Cada setlist pertenece a una banda. Añádela en la pestaña Bandas.</string>
+    <string name="setlist_has_roadmap">Hoja de ruta</string>
+    <string name="setlist_incomplete">Incompleto</string>
+    <string name="setlist_no_date">Sin fecha</string>
+    <plurals name="setlist_songs">
+        <item quantity="one">%1$s canción</item>
+        <item quantity="other">%1$s canciones</item>
+    </plurals>
+
+    <!-- Form -->
+    <string name="setlist_edit">Editar setlist</string>
+    <string name="setlist_name">Nombre</string>
+    <string name="setlist_band">Banda</string>
+    <string name="setlist_band_required">Elige una banda</string>
+    <string name="setlist_date">Fecha</string>
+    <string name="setlist_pick_date">Elegir fecha</string>
+    <string name="setlist_clear_date">Quitar fecha</string>
+    <string name="action_ok">Aceptar</string>
+
+    <!-- Detail -->
+    <string name="setlist_linked_event">Evento: %1$s</string>
+    <string name="total_with_stops">Con paradas</string>
+    <string name="total_music_only">Solo música</string>
+    <string name="total_exact">Exacto %1$s</string>
+    <plurals name="total_incomplete">
+        <item quantity="one">Incompleto: %1$s canción sin duración</item>
+        <item quantity="other">Incompleto: %1$s canciones sin duración</item>
+    </plurals>
+    <string name="breakdown_with_stops">Canciones %1$s · Paradas %2$s · Pausas %3$s × %4$s s · Enlaces sin pausa: %5$s</string>
+    <string name="breakdown_music_only">Deja fuera %1$s de paradas y pausas</string>
+    <string name="pause_between">Pausa entre canciones</string>
+    <string name="pause_seconds">%1$s s</string>
+    <string name="pause_decrease">Pausa más corta</string>
+    <string name="pause_increase">Pausa más larga</string>
+    <string name="detail_empty_title">Este setlist está vacío</string>
+    <string name="detail_empty_body">Añade la primera canción.</string>
+    <string name="action_add_song">Añadir canción</string>
+    <string name="action_add_stop">Añadir parada</string>
+    <string name="action_reorder">Reordenar</string>
+    <string name="action_done">Hecho</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_move_up">Subir</string>
+    <string name="action_move_down">Bajar</string>
+    <string name="action_drag">Arrastra para reordenar</string>
+    <string name="action_remove">Quitar del setlist</string>
+    <string name="setlist_delete">Eliminar setlist</string>
+    <string name="setlist_delete_title">¿Eliminar %1$s?</string>
+    <string name="setlist_delete_body">Se eliminan el setlist y sus elementos. Las canciones siguen en el catálogo.</string>
+    <string name="setlist_delete_body_event">Se eliminan el setlist y sus elementos. Las canciones siguen en el catálogo y el evento %1$s se queda sin setlist.</string>
+
+    <!-- Markers -->
+    <string name="marker_instrument">→ %1$s</string>
+    <string name="marker_tuning">Afinación %1$s</string>
+    <string name="marker_key">Tono %1$s (orig. %2$s)</string>
+    <string name="marker_tempo">%1$s BPM (orig. %2$s)</string>
+    <string name="marker_repeated">Repetida</string>
+    <string name="marker_linked">Enlazada</string>
+    <string name="tuning_standard">Estándar</string>
+    <string name="value_none">ninguno</string>
+
+    <!-- Stops -->
+    <string name="stop_speech">Discurso</string>
+    <string name="stop_break">Descanso</string>
+    <string name="stop_tuning">Cambio de afinación</string>
+    <string name="stop_encore">Bis</string>
+    <string name="stop_edit">Editar parada</string>
+    <string name="stop_duration">Duración</string>
+    <string name="stop_note">Nota</string>
+    <string name="stop_added_at_end">La parada se añade al final. Después muévela a su sitio.</string>
+    <string name="stop_minus_minute">Un minuto menos</string>
+    <string name="stop_plus_minute">Un minuto más</string>
+    <string name="stop_minus_seconds">15 segundos menos</string>
+    <string name="stop_plus_seconds">15 segundos más</string>
+
+    <!-- Item editor -->
+    <string name="item_key">Tono aquí</string>
+    <string name="item_bpm">BPM aquí</string>
+    <string name="item_original">Original: %1$s</string>
+    <string name="item_instrument">Instrumento</string>
+    <string name="item_tuning">Afinación aquí</string>
+    <string name="item_note">Nota para la actuación</string>
+    <string name="item_link">Enlazada con la siguiente canción</string>
+    <string name="item_transition">Transición, por ejemplo «acabar en Mi»</string>
+    <string name="item_link_no_effect">El siguiente elemento no es una canción, así que por ahora el enlace no tiene efecto.</string>
+
+    <!-- Add song -->
+    <string name="add_song_search">Busca en tus canciones</string>
+    <string name="add_song_present">Ya está en el setlist</string>
+    <string name="add_song_create">Crear «%1$s»</string>
+    <string name="add_song_no_results">Ninguna canción coincide</string>
+    <string name="add_song_note">En esta versión las canciones se escriben a mano.</string>
+    <string name="added">%1$s añadida</string>
+    <string name="added_repeated">%1$s añadida. Ya estaba en el setlist.</string>
+</resources>

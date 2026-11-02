@@ -40,10 +40,10 @@
 
 ## 6. Setlists
 
-- [ ] 6.1 ViewModel tests, then create and edit setlists, upcoming and past lists, delete. Verify: `setlists` scenarios.
-- [ ] 6.2 Add songs and stops as items; duplicate warning; per-setlist overrides. Verify: scenarios checked manually.
-- [ ] 6.3 Reorder control with drag and move up/down buttons, remove items, links. Verify: reorder persists after restart.
-- [ ] 6.4 Duration totals and breakdown toggle, change markers in the UI. Verify: totals match the domain tests on a sample setlist.
+- [x] 6.1 ViewModel tests, then create and edit setlists, upcoming and past lists, delete. Verify: `setlists` scenarios.
+- [x] 6.2 Add songs and stops as items; duplicate warning; per-setlist overrides. Verify: scenarios checked manually.
+- [x] 6.3 Reorder control with drag and move up/down buttons, remove items, links. Verify: reorder persists after restart.
+- [x] 6.4 Duration totals and breakdown toggle, change markers in the UI. Verify: totals match the domain tests on a sample setlist.
 
 ## 7. Stage mode
 

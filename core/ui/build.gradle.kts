@@ -14,6 +14,7 @@ kotlin {
         commonMain.dependencies {
             api(project(":core:model"))
             api(libs.compose.components.resources)
+            implementation(libs.reorderable)
         }
     }
 }

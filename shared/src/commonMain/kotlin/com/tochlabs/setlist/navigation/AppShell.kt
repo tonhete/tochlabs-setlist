@@ -22,10 +22,14 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.tochlabs.setlist.core.model.BandId
+import com.tochlabs.setlist.core.model.SetlistId
 import com.tochlabs.setlist.core.model.SongId
 import com.tochlabs.setlist.feature.bands.BandFormScreen
 import com.tochlabs.setlist.feature.bands.BandHistoryScreen
 import com.tochlabs.setlist.feature.bands.BandsScreen
+import com.tochlabs.setlist.feature.setlists.SetlistDetailScreen
+import com.tochlabs.setlist.feature.setlists.SetlistFormScreen
+import com.tochlabs.setlist.feature.setlists.SetlistsScreen
 import com.tochlabs.setlist.feature.songs.SongFormScreen
 import com.tochlabs.setlist.feature.songs.SongsScreen
 import org.jetbrains.compose.resources.painterResource
@@ -83,7 +87,32 @@ private fun appEntries(stack: NavBackStack<NavKey>) =
         val back: () -> Unit = { stack.removeLastOrNull() }
         val openSettings: () -> Unit = { stack.add(SettingsRoute) }
 
-        entry<SetlistsRoute> { PlaceholderScreen(Tab.SETLISTS, openSettings) }
+        entry<SetlistsRoute> {
+            SetlistsScreen(
+                onOpenSettings = openSettings,
+                onAddSetlist = { band -> stack.add(SetlistFormRoute(bandId = band?.value)) },
+                onOpenSetlist = { stack.add(SetlistDetailRoute(it.value)) },
+            )
+        }
+        entry<SetlistFormRoute> { route ->
+            SetlistFormScreen(
+                setlistId = route.setlistId?.let(::SetlistId),
+                preselectedBand = route.bandId?.let(::BandId),
+                onSaved = { id ->
+                    back()
+                    // A new setlist opens its detail, ready to add songs.
+                    if (route.setlistId == null) stack.add(SetlistDetailRoute(id.value))
+                },
+                onClose = back,
+            )
+        }
+        entry<SetlistDetailRoute> { route ->
+            SetlistDetailScreen(
+                setlistId = SetlistId(route.setlistId),
+                onBack = back,
+                onEdit = { stack.add(SetlistFormRoute(setlistId = it.value)) },
+            )
+        }
         entry<CalendarRoute> { PlaceholderScreen(Tab.CALENDAR, openSettings) }
         entry<SettingsRoute> { SettingsPlaceholderScreen(onBack = back) }
 

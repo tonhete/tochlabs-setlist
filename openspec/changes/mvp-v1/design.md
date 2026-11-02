@@ -192,6 +192,6 @@ Base package `com.tochlabs.setlist`, one sub-package per module (for example `co
 
 ## Open Questions
 
-- Which reorderable list approach to use (a maintained multiplatform library or a custom implementation); decided in the task that builds the reorder control, behind the same component in `core:ui`.
+- ~~Which reorderable list approach to use~~ Decided in task 6.3: the multiplatform library `sh.calvin.reorderable` (Apache 2.0), used only inside `core:ui` (`ReorderableList.kt`), so it can be replaced without touching the features. Move-up and move-down buttons stay as the accessible alternative.
 - File type declaration for `.setlist` (MIME type and iOS type identifier); decided in the sharing task, with no effect on the specs.
 - Exact versions of KSP, `kotlinx-coroutines`, `kotlinx-datetime` and `kotlinx-serialization`; each is verified when first added to the catalogue.
